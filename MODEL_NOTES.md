@@ -1,11 +1,10 @@
-# Model notes
+# Model basis and interpretation
 
-- **Case inputs:** 52,000 total workers; Field Metering cohort ~6,000; exposure estimate 70% of task workload, not 70% of people; exposure horizon 18 months.
-- **M18 receiving-work threshold:** (3,570 displaced work equivalents − 225 relevant attrition equivalents) ÷ 0.65 modelled readiness = about **5,146** receiving-work equivalents. The 3,570, 225, and 65% inputs are synthetic assumptions/model outputs, not verified company facts.
-- **Assumed M18 receiving capacity:** 900 (660 non-contractor + 240 contractor opportunities). Contractor-off assumes 660. These are not verified vacancies.
-- **M36 baseline unresolved gap:** 2,535 work equivalents with modelled contractor opportunity; zero-contractor 2,691. A work equivalent is not an employee headcount or placement decision.
-- **Chart provenance:** gap curves use synthetic model anchor points and linear interpolation. In v3, the all-components view uses a monotone illustrative displaced-work envelope and synthetic attrition/matching decomposition that reconciles to the gap at each month. It should not be taken as observed employment transitions or a re-run of all Excel formulas.
-- **Rollout gating:** moves early workforce pressure but scenarios converge in the long run. Illustrative Rp600m gating opportunity cost is not proven cash expenditure; gateable NPV is withheld.
-- **Cash ROI:** +290% assumes contractor substitution spending can be avoided at the modelled rate. −100% zero-contractor is a *scenario with contractor spending as the only cash benefit currently modelled*, not a claim that all other cash benefits are zero in reality.
-- **Exposure map:** the 11 job families other than Field Metering have deliberately invented staffing sizes and exposure ranges; urgency and evidence justify focusing on Field Metering, not comparative synthetic totals.
-- **Governance:** consent-based participation; restricted use; human-reviewed matching; no automated dismissal or demotion recommendations.
+- Workforce: case cohort 6,000 × 70% automatable work = 4,200 exposed work equivalents. A **synthetic 85% realization assumption** produces 3,570 displaced WE in the model. These are not counts of people losing employment.
+- Capacity: 660 nonvendor + 240 optional vendor receiving work equivalents are **unverified assumed demand**, with 65% readiness. M36 potential matches = 429 + 156 = 585 WE. M36 relevant attrition = 450 WE. Residual = 2,535 WE (or 2,691 WE with zero vendor).
+- Receiving-work requirement at M18: (3,570 − 225) / 0.65 ≈ 5,146 WE. At M36: (3,570 − 450) / 0.65 = 4,800 WE. These are counterfactual coverage requirements, not verified vacancies.
+- Financial boundary: Rp3,500m engagement is in the case; Rp1,500m implementation + Rp500m support in each of years 2 and 3 are **synthetic**, giving an illustrative Rp6,000m cash envelope. A distinct Rp3,787.5m hybrid resource-effort valuation may overlap and must not be automatically added. This is not a validated full TCO.
+- Vendor-only illustrative breakeven: 1,000 qualifying FTE-months at Rp6m per month, or Rp1.538m/FTE-month if all 3,900 potential units become genuinely avoidable. The +290% modelled return assumes 100% vendor benefit capture under **non-gated** cash timing. Gated cash flows were not modelled.
+- Wait 12 months: +1,404 additional unresolved WE-months in first year and +7,020 through M36; potential M36 lost vendor substitution = 1,872 FTE-months (Rp11,232m conditional at the synthetic unit price). These are not demonstrated losses or net cost-of-inaction.
+- The counterfactual uses **invented counts of people**, independently of WE. It is a prohibited policy comparator, not a planned or endorsed separation scenario.
+- No worked example here establishes workforce absorption at scale. The correct decision is bounded evidence-building and Board oversight for unresolved capacity.
