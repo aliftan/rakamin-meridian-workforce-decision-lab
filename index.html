@@ -400,111 +400,688 @@ button:hover{filter:brightness(.985)}.small-button.primary:hover{background:#0a5
 
 /* Cross-artifact alignment: bounded destination context remains readable across layouts. */
 .cap-destination-context{font-size:13px;line-height:1.5;color:var(--lab-secondary,#5a746b);padding:11px 14px;background:#edf5f0;border:1px solid #c7d8ce;border-radius:8px;margin:10px 0 16px;}
-</style><meta content="Self-contained case-study decision support: exposure, scenario dynamics, demand evidence, capability pathways and Board gates." name="description"/></head><body><div class="app antialiased"><aside class="side shadow-xl"><div class="brand"><div class="mark"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></div><div><strong>MERIDIAN</strong><span>WORKFORCE DECISION LAB</span></div></div><nav aria-label="Main navigation" class="nav"><button aria-current="page" class="active" data-page="exposure" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect></svg><em>01</em> Exposure map</button><button aria-current="false" data-page="scenario" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="M4 19V5"></path><path d="M4 19h17"></path><path d="m7 15 4-4 3 2 5-7"></path></svg><em>02</em> Scenario lab</button><button aria-current="false" data-page="demand" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="M4 12.5 9 17l11-11"></path></svg><em>03</em> Demand evidence</button><button aria-current="false" data-page="people" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg><em>04</em> Capability pathway</button><button aria-current="false" data-page="board" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 2 8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg><em>05</em> Board decision</button></nav></aside><main class="main min-w-0"><div class="topbar flex items-start justify-between gap-4"><span class="eyebrow">Project Meridian / Director of Human Capital</span><div class="top-right"><span class="pill">SYNTHETIC DEMO</span></div></div>
-<section class="page active" id="exposure"><div class="header-row"><div><span class="eyebrow">01 / Enterprise view</span><h1>52,000 employees. One urgent transition. Many unanswered questions.</h1><p class="lede">Compare absolute potential task exposure with time-to-impact and evidence confidence. Exposure volume alone does not determine priority.</p><button class="small-button primary mt-2 mb-4" data-open="people" type="button">Explore the solution AHA</button></div></div><div class="cards gap-4"><div class="card rounded-xl"><div class="marker">Enterprise workforce</div><div class="metric">52,000</div><small>Case fact · 6 regional units + HQ</small></div><div class="card rounded-xl"><div class="marker">Job title complexity</div><div class="metric">1,800+</div><small>Case fact · normalization needed</small></div><div class="card rounded-xl"><div class="marker">Priority cohort</div><div class="metric">6,000</div><small>Field Metering · case fact</small></div><div class="card rounded-xl"><div class="marker">Priority exposure</div><div class="metric">4,200</div><small>Automatable work equivalents, not workers for exit</small></div></div><div class="panel rounded-2xl"><div class="panel-top"><div><h2>Enterprise job-family exposure</h2><p class="subtle">The 11 non-Field-Metering families and their 24–36 month timing are synthetic hypotheses, not Client findings. Exposure is potential task change, not realized displacement. Reskillability is UNASSESSED until task evidence, safety requirements and real receiving work have been checked.</p></div><button class="small-button" id="sortBtn">Sort: workforce size</button></div><div class="table-scroll"><table><thead><tr><th>Job family</th><th>Workforce</th><th>Task exposure</th><th>Absolute work equivalents</th><th>Time-to-impact</th><th>Evidence</th><th></th></tr></thead><tbody id="exposureRows"></tbody></table></div><div class="foot-brief" id="exposureSummary" style="margin-top:18px"></div></div><div class="alert"><strong>Why Field Metering first?</strong> Its 4,200 WE is the largest single-family figure in this illustrative comparison, but Field Metering is the only family with brief-sourced exposure and an 18-month clock. The other 11 families have unvalidated synthetic ranges and timing. Prioritise by <strong>evidence maturity × urgency</strong>, not by exposure size alone.</div></section>
+
+/* Cohort evidence journey — deliberately separated from workforce forecasts. */
+.cohort-shell{background:#fff;border:1px solid #b9d7c7;border-radius:12px;padding:22px;margin:0 0 17px;box-shadow:0 3px 14px rgba(15,63,48,.045)}
+.cohort-head{display:flex;justify-content:space-between;align-items:start;gap:16px;flex-wrap:wrap}.cohort-head h2{margin:4px 0 7px;font-size:21px}.cohort-head p{margin:0 0 13px;color:#63796d;font-size:13px;max-width:850px}
+.cohort-demo-note{font-size:11px;letter-spacing:.07em;font-weight:800;color:#436788;background:#edf3fa;border:1px solid #cbdcec;padding:8px 10px;border-radius:7px;white-space:nowrap}
+.cohort-presets{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;margin:11px 0 15px}.cohort-preset{display:grid;gap:4px;text-align:left;background:#f7faf7;border:1px solid #d9e5dc;border-radius:9px;padding:11px 12px}.cohort-preset b{color:#155e4d;font-size:13px}.cohort-preset span{font-size:12px;color:#667e70;line-height:1.35}.cohort-preset.selected{border-color:#288066;background:#e9f6ed;box-shadow:inset 0 0 0 1px #288066}
+.cohort-profile-banner{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;background:#eef7f0;border:1px solid #c7ddce;border-radius:9px;padding:15px 17px;margin:5px 0 13px}.cohort-profile-banner>div{display:grid;gap:5px}.cohort-profile-banner strong{font-size:19px;color:#184c3e}.cohort-profile-banner p{margin:0;color:#526e5e;font-size:13px}.cohort-flags{display:flex;gap:7px;flex-wrap:wrap}.cohort-flags span{font-size:11px;border-radius:6px;padding:6px 8px;border:1px solid #c4d9cf;background:#fff;color:#486f5c;font-weight:700}.cohort-flags span.hold{background:#fff5e7;color:#906026;border-color:#ecd1a7}
+.cohort-details{border:1px solid #dce7df;border-radius:8px;overflow:hidden}.cohort-details>summary{cursor:pointer;padding:11px 13px;font-size:13px;font-weight:750;color:#216b56;background:#f7faf7}.cohort-details[open]>summary{border-bottom:1px solid #dce7df}.cohort-controls{display:flex;flex-wrap:wrap;gap:8px;padding:12px;background:#fafcf9}.cohort-controls input,.cohort-controls select{padding:9px 10px;border:1px solid #bdcec3;border-radius:7px;background:white;min-height:39px;font:inherit;font-size:12px;min-width:155px}.cohort-controls input{flex:1}.cohort-controls span{font-size:12px;color:#688174;align-self:center}.cohort-table-wrap{max-height:290px;overflow:auto}.cohort-table{min-width:680px}.cohort-table th{position:sticky;top:0;z-index:1}.cohort-table td{padding:10px;font-size:12px}.cohort-table button{background:transparent;border:0;text-decoration:underline;text-underline-offset:3px;color:#146d5a;font-weight:800;padding:5px 0}.cohort-table tr.active{background:#eaf5ed}.cohort-footnote{font-size:12px;color:#657b6c;padding:10px 12px;margin:0;line-height:1.55}
+.cap-inspector-grid{grid-template-columns:minmax(260px,.8fr) minmax(0,1.2fr)}.cap-skill-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.cap-skill{padding:11px}.cap-skill strong{font-size:12.5px}.cap-skill small{font-size:11.5px}.cap-skill>.data-tag{font-size:10px}.cap-lineage>div strong{overflow-wrap:anywhere}.cohort-decision-divider{padding:12px 14px;background:#f5f8f4;border:1px solid #d4e4d8;border-radius:8px;margin:10px 0 15px;color:#567363;font-size:12px;line-height:1.56}.cohort-decision-divider strong{color:#245845}
+.cap-evidence-detail .evidence-line{padding:5px 0;border-bottom:1px dashed #d7e5da}.cap-evidence-detail .evidence-line:last-child{border:0}.cap-evidence-detail .evidence-line b{display:inline-block;min-width:92px;color:#335e4e}
+.cap-match-table .status-supported{color:#23674f;background:#e4f1e9}.cap-match-table .status-review{color:#805d31;background:#fff3e0}.cap-match-table .status-hold{color:#8f4f42;background:#fff0ed}
+@media(max-width:1110px){.cohort-presets{grid-template-columns:repeat(2,minmax(0,1fr))}.cap-inspector-grid{grid-template-columns:1fr}}
+@media(max-width:760px){.cohort-shell{padding:15px}.cohort-presets,.cap-skill-list{grid-template-columns:1fr}.cohort-controls input,.cohort-controls select{width:100%;flex:1 1 100%}.cohort-profile-banner strong{font-size:17px}}
+@media print{.cohort-shell{display:none!important}}
+
+/* UX refinement: always-visible cohort browser, predictable filter affordance and master/detail task evidence. */
+.cohort-browser-heading{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:7px 15px;background:#f3f8f4;padding:13px 15px;border-bottom:1px solid #dce7df}
+.cohort-browser-heading strong{font-size:15px;color:#185a48}
+.cohort-browser-heading span{font-size:12px;color:#587264;line-height:1.5}
+.cohort-details{overflow:hidden}
+.cohort-controls{align-items:center;gap:10px}
+.cohort-controls input{min-width:220px;flex:1 1 270px;font-size:13px}
+.cohort-controls .cohort-select-wrap{display:block;flex:0 1 248px;align-self:stretch;min-width:204px;position:relative;color:#386353}
+.cohort-controls .cohort-select-wrap select{width:100%;height:100%;min-width:0;appearance:none;-webkit-appearance:none;-moz-appearance:none;cursor:pointer;padding:10px 40px 10px 12px;line-height:1.35;background-color:#fff;color:#234e40;border:1px solid #b6cfc1;border-radius:8px;font-size:13px}
+.cohort-select-wrap::after{content:"";position:absolute;right:17px;top:calc(50% - 5px);width:8px;height:8px;border-right:2px solid #316a58;border-bottom:2px solid #316a58;transform:rotate(45deg);pointer-events:none}
+.cohort-controls #cohortCount{font-weight:700;color:#366f5d;font-size:12px;white-space:nowrap}
+.cohort-table-wrap{max-height:440px;overflow-x:auto;overflow-y:auto;scrollbar-width:thin;scrollbar-color:#8eb7a2 #eff6f1;border-top:1px solid #e3eae4;border-bottom:1px solid #d7e4db}
+.cohort-table thead th{top:0;position:sticky;z-index:2}
+.cohort-table button{padding:8px 10px;border-radius:6px;text-decoration:none;border:1px solid #c2ddd0;background:#f0f8f3;min-height:34px}
+.cohort-table button:hover,.cohort-table button:focus-visible{background:#dff2e7;border-color:#579b7a}
+.cohort-table tr.active td:first-child{border-left:3px solid #16765e}
+.cap-inspector-grid{grid-template-columns:minmax(305px,360px) minmax(0,1fr);align-items:start;gap:16px}
+.cap-selector-panel,.cap-evidence-panel{min-width:0}
+.cap-skill-list{grid-template-columns:minmax(0,1fr);gap:8px}
+.cap-skill{min-height:76px;padding:13px 14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:6px 10px;text-align:left;width:100%}
+.cap-skill>span:first-child{flex:1 1 165px}
+.cap-skill>span:first-child strong{font-size:13.5px;line-height:1.4}
+.cap-skill>span:first-child small{font-size:12px;line-height:1.45}
+.cap-skill>.data-tag{display:inline-flex;justify-content:center;align-items:center;max-width:100%;white-space:normal;text-align:center;font-size:11px;line-height:1.35;padding:6px 8px;flex:0 0 auto}
+.cap-skill.selected{border-width:2px}
+.cap-back-button{display:none;border:1px solid #bfd9cb;background:#f3f9f5;color:#1b725b;border-radius:7px;padding:8px 12px;font-size:12px;font-weight:700;margin-bottom:12px;cursor:pointer}
+#capEvidencePanel:focus{outline:none}
+@media(max-width:1110px){.cap-inspector-grid{grid-template-columns:minmax(0,1fr)}.cap-back-button{display:inline-flex;align-items:center}.cap-skill{min-height:70px}.cap-skill-list{max-width:none}.cap-evidence-panel{scroll-margin-top:16px}}
+@media(max-width:760px){.cohort-controls input{min-width:0;width:100%;flex:1 1 100%}.cohort-controls .cohort-select-wrap{flex:1 1 100%;width:100%;min-width:0;min-height:42px}.cohort-controls .cohort-select-wrap select{width:100%;min-height:42px}.cohort-table-wrap{max-height:460px}.cohort-table th,.cohort-table td{font-size:12px}.cohort-browser-heading{padding:13px}.cap-skill>.data-tag{font-size:11px}}
+@media print{.cap-back-button{display:none!important}}
+
+
+/* Prevent the legacy rotated crosswalk arrow from creating a huge click-blocking overlay at tablet widths. */
+@media(max-width:1100px){.cap-lineage-arrow{transform:none!important;min-height:22px;font-size:0!important}.cap-lineage-arrow::after{content:"↓";font-size:20px;line-height:1}}
+/* On small screens, employee records are labeled cards, not a clipped six-column table. */
+@media(max-width:760px){
+ .cohort-table-wrap{overflow-y:auto;overflow-x:hidden}
+ .cohort-table{display:block;min-width:0;width:100%}
+ .cohort-table thead{display:none}
+ .cohort-table tbody{display:block}
+ .cohort-table tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 12px;padding:13px 14px;border-bottom:1px solid #deebe2;background:white}
+ .cohort-table tr.active{background:#eaf5ed}
+ .cohort-table td{display:flex;flex-direction:column;align-items:flex-start;gap:3px;border:0!important;padding:0!important;font-size:12px;line-height:1.45;white-space:normal;overflow-wrap:break-word}
+ .cohort-table td::before{content:attr(data-label);font-size:10px;line-height:1.35;letter-spacing:.06em;text-transform:uppercase;font-weight:800;color:#738679}
+ .cohort-table td:nth-child(3),.cohort-table td:nth-child(4){grid-column:1/-1}
+ .cohort-table td:last-child{align-items:flex-end}
+ .cohort-table td:last-child button{min-width:90px}
+ .cohort-table tr.active td:first-child{border-left:0}
+ .cohort-table tr:has(td[colspan]){grid-template-columns:1fr}
+}
+
+
+/* Capability & Transition Review — decision-first, progressive disclosure (scoped to Page 4). */
+#people {color:#183b33;}
+#people [hidden]{display:none!important}
+#people h1{font-size:clamp(28px,2.6vw,42px);max-width:1010px;letter-spacing:-.03em;line-height:1.16;margin:11px 0 13px}
+#people h2{font-size:clamp(19px,1.65vw,24px);line-height:1.29;margin:0 0 8px;letter-spacing:-.015em}
+#people p{font-size:15px;line-height:1.54;color:#40584e;margin:0}
+#people button,#people input,#people select{font:inherit}
+#people button{cursor:pointer}
+#people button:focus-visible,#people a:focus-visible,#people summary:focus-visible,#people input:focus-visible,#people select:focus-visible{outline:3px solid #a9792b;outline-offset:3px}
+.cr-guard{display:flex;align-items:center;gap:14px;padding:11px 14px;border:1px solid #cadcd0;border-radius:9px;background:#f0f6f0;margin-bottom:24px;font-size:13px;line-height:1.45;color:#365649}
+.cr-guard strong{font-size:11px;letter-spacing:.09em;color:#145c4b;white-space:nowrap}
+#people .cr-intro{font-size:16px;line-height:1.6;max-width:880px;margin-bottom:20px}
+.cr-view{padding-bottom:32px}
+.cr-overline{color:#286c58;letter-spacing:.08em;font-size:11px;font-weight:800;line-height:1.4}
+.cr-finding{background:#19483d;color:#fff;padding:22px 25px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-radius:12px;margin-bottom:14px}
+#people .cr-finding h2{color:#fff;font-size:24px;max-width:820px;margin:6px 0 8px}
+#people .cr-finding p{color:#e1ede6;max-width:810px;font-size:14px}
+.cr-finding .cr-overline{color:#c2ded2}
+.cr-button{border-radius:7px;padding:11px 15px;min-height:43px;display:inline-flex;gap:8px;align-items:center;justify-content:center;text-align:center;font-size:13px!important;font-weight:760;white-space:normal}
+.cr-button-light{color:#144536;background:#e3f3eb;border:1px solid #d2e8da}
+.cr-button-outline{background:white;color:#146a56;border:1px solid #9dbdab}
+.cr-button-primary{background:#176b59;color:white;border:1px solid #176b59}
+.cr-button:hover{filter:brightness(.965)}
+.cr-text-button{border:0;background:none;color:#126a54;font-size:14px!important;font-weight:740;text-decoration:underline;text-underline-offset:3px;padding:8px 0;text-align:left}
+.cr-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin-bottom:18px}
+.cr-metrics>div{display:grid;gap:5px;align-content:start;background:white;border:1px solid #c6d7cc;border-radius:10px;padding:17px 19px;min-width:0}
+.cr-metrics span{color:#486659;font-size:12px;font-weight:750}
+.cr-metrics strong{font-size:25px;line-height:1.15;letter-spacing:-.02em;color:#183b33}
+.cr-metrics small{font-size:13px;line-height:1.5;color:#4b6258}
+.cr-panel{background:white;border:1px solid #c6d7cc;border-radius:11px;padding:20px;margin-bottom:16px}
+.cr-section-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:15px;margin-bottom:14px}
+.cr-section-heading h2{margin:5px 0 6px}
+.cr-section-heading p{max-width:850px}
+.cr-work-glance .cr-section-heading{align-items:center}
+.cr-inline-details{max-width:100%;margin-left:auto;flex:none}
+.cr-inline-details summary,.cr-secondary-details>summary,.cr-mapping summary{color:#146b56;font-size:13px;font-weight:760;cursor:pointer;padding:9px 10px;border:1px solid #c2d7ca;border-radius:7px;background:#f6faf7}
+.cr-inline-details[open]{flex-basis:100%;width:100%;margin:5px 0 0}
+.cr-inline-details[open] summary{margin-bottom:12px}
+.cr-before-after{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.cr-before-after>div{border:1px solid #d6e3d9;border-radius:8px;padding:14px;background:#f8faf8}
+.cr-before-after strong{font-size:14px}
+.cr-before-after ol{margin:9px 0 0;padding-left:20px;font-size:13px;line-height:1.7;color:#3b5447}
+.cr-inline-details p{margin-top:9px!important;font-size:12px!important}
+.cr-shift{display:flex;align-items:center;gap:12px}
+.cr-shift-before,.cr-shift-after{flex:1;padding:11px 14px;border:1px solid #d5e0d7;border-radius:7px;font-weight:700;font-size:14px;line-height:1.4;background:#f4f6f3}
+.cr-shift-after{background:#e8f3ed;border-color:#b1d4c2}
+.cr-arrow{font-size:23px;color:#217a62}
+.cr-matrix-head,.cr-mrow{display:grid;grid-template-columns:minmax(140px,1.3fr) minmax(140px,1fr) minmax(125px,.88fr) minmax(138px,1fr) 110px;gap:10px;align-items:center}
+.cr-matrix-head{padding:10px 12px;background:#eef4ef;border-bottom:1px solid #d2e0d5;font-size:11px;font-weight:780;letter-spacing:.04em;color:#436253;text-transform:uppercase;border-radius:7px 7px 0 0}
+.cr-mrow{padding:12px;border:1px solid #dfebe1;border-top:0;min-width:0}
+.cr-mrow:last-child{border-radius:0 0 7px 7px}
+.cr-case-identity{display:grid;gap:3px;min-width:0}
+.cr-case-identity strong{font-size:15px;color:#183c32}
+.cr-case-identity small{font-size:13px;color:#496257;line-height:1.4}
+.cr-status{display:inline-flex;align-items:center;min-width:0;font-weight:720;font-size:13px;line-height:1.4;padding:7px 9px;border-radius:6px}
+.cr-status.cr-sampled{background:#e7f3ed;color:#235c46;border:1px solid #bbdac8}
+.cr-status.cr-review{background:#f8f1e6;color:#795021;border:1px solid #e8cfaa}
+.cr-status.cr-danger{background:#fae8e6;color:#923d32;border:1px solid #e7bbb5}
+.cr-mobile-label{display:none}
+.cr-matrix-foot{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-top:13px}
+.cr-matrix-foot span{font-size:13px;color:#526c5e;line-height:1.5;max-width:750px}
+.cr-scale-steps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.cr-scale-steps>div{display:grid;gap:6px;align-content:start;border:1px solid #d4e2d7;border-radius:8px;padding:13px 12px;background:#f5f8f5;min-width:0}
+.cr-scale-steps small{color:#226c57;font-size:11px;font-weight:800}
+.cr-scale-steps strong{font-size:13px;line-height:1.4;color:#1c4337}
+.cr-scale-steps span{font-size:12px;color:#4c6658;line-height:1.45}
+#people .cr-small-note{font-size:12px;line-height:1.5;margin-top:12px;color:#4e675a}
+.cr-breadcrumb{display:flex;gap:12px;align-items:center;font-size:13px;color:#526d5e;margin:-5px 0 16px}
+.cr-case-head{display:flex;justify-content:space-between;gap:20px;align-items:center;margin-bottom:16px}
+.cr-case-head h1{margin-top:6px!important}
+#people .cr-subtitle{font-size:14px}
+.cr-case-head-actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.cr-case-context{position:sticky;top:0;z-index:5;display:flex;gap:15px;justify-content:space-between;align-items:center;padding:12px 16px;border:1px solid #b3cfbf;background:#eaf5ed;border-radius:9px;margin-bottom:16px;box-shadow:0 3px 10px rgba(12,59,45,.07)}
+.cr-case-context strong{font-size:13px;color:#194d3b}
+.cr-case-context span{font-size:12px;color:#466753}
+.cr-role-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.cr-role-choice{border:1px solid #c6d8cb;border-radius:8px;background:#f9fbf9;padding:13px;text-align:left;display:grid;gap:5px}
+.cr-role-choice strong{font-size:13px;color:#244c3d;line-height:1.45}
+.cr-role-choice small{font-size:12px;color:#4e6757;line-height:1.5}
+.cr-role-choice.selected{border:2px solid #16755d;background:#ebf6ef;padding:12px}
+.cr-decision{background:#f2f7f2;border:1px solid #b5d3bf;border-radius:11px;padding:21px;margin:16px 0}
+.cr-decision-top{display:flex;gap:14px;justify-content:space-between;align-items:flex-start;margin-bottom:17px}
+.cr-decision-top h2{margin:6px 0!important}
+.cr-priority{display:inline-block;font-size:12px;font-weight:750;padding:8px 10px;border-radius:6px;white-space:normal;flex:0 0 auto}
+.cr-priority.cr-danger{color:#8d372e;background:#ffe8e4;border:1px solid #e1b7b0}
+.cr-priority.cr-review{color:#744f23;background:#fff1db;border:1px solid #e5cfa6}
+.cr-gates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.cr-gates>div{display:grid;align-content:start;gap:6px;background:#fff;border:1px solid #c9dacf;border-radius:8px;padding:14px 13px;min-width:0}
+.cr-gates span{font-size:12px;font-weight:750;color:#486656}
+.cr-gates strong{font-size:15px;line-height:1.34;color:#213f34}
+.cr-gates small{font-size:12px;line-height:1.5;color:#516b5d}
+.cr-next-action{border-left:4px solid #14745b;background:white;padding:13px 16px;border-radius:0 7px 7px 0;margin-top:14px}
+.cr-next-action strong{font-size:13px;color:#125f4a}
+.cr-next-action p{margin-top:5px!important}
+.cr-req-head{display:grid;grid-template-columns:minmax(120px,1.4fr) 105px 88px minmax(140px,1fr);gap:12px;font-size:11px;font-weight:780;letter-spacing:.03em;text-transform:uppercase;background:#eff4ef;color:#486455;padding:10px 15px;border-radius:7px}
+.cr-requirement{border-bottom:1px solid #dce8de}
+.cr-requirement summary{display:grid;grid-template-columns:minmax(120px,1.4fr) 105px 88px minmax(140px,1fr);gap:12px;align-items:center;padding:16px 15px;cursor:pointer;position:relative;list-style:none}
+.cr-requirement summary::-webkit-details-marker{display:none}
+.cr-task-name{display:flex;align-items:flex-start;gap:10px;min-width:0}
+.cr-task-name small{font-size:11px;color:#36775e}
+.cr-task-name strong{font-size:14px;line-height:1.45}
+.cr-band-cell{font-weight:730;font-size:13px;color:#304d40;display:grid;gap:4px}
+.cr-band-cell small{display:none;font-size:10px;color:#547365;font-weight:730}
+.cr-req-status{font-size:12px;font-weight:700;line-height:1.4;padding:6px 8px;border-radius:6px;background:#f3f7f4}
+.cr-req-status.cr-sampled{background:#e6f3ea;color:#296147}
+.cr-req-status.cr-review{background:#fff1dc;color:#845e30}
+.cr-req-status.cr-hold{background:#ffe9e6;color:#8f3c32}
+.cr-expand-label{grid-column:1/-1;justify-self:start;color:#136c55;font-size:12px;font-weight:750;padding-top:1px}
+.cr-requirement[open] summary{background:#f2f8f3}
+.cr-evidence-body{background:#f8faf8;border:1px solid #dae7dc;border-radius:8px;padding:15px 17px;margin:0 10px 12px;font-size:13px;line-height:1.55;color:#3e564a}
+.cr-evidence-body p{font-size:13px!important;margin:0 0 8px!important}
+.cr-evidence-body p:last-child{margin-bottom:0!important}
+.cr-danger-text{color:#8f342e!important}
+.cr-secondary-details{margin-top:16px}
+.cr-secondary-details>summary{display:inline-block}
+.cr-secondary-details[open]>summary{margin-bottom:12px}
+.cr-secondary-task{border-bottom:1px solid #e1eae2}
+.cr-secondary-task summary{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:13px 8px;cursor:pointer;font-size:13px}
+.cr-secondary-task summary>span{color:#476356}
+.cr-mapping{padding:17px 20px}
+.cr-mapping summary{display:block}
+.cr-map-chain{display:grid;grid-template-columns:1fr 20px 1.4fr 20px 1.2fr;gap:10px;margin-top:17px;align-items:center}
+.cr-map-chain>div{padding:13px;background:#f4f8f5;border:1px solid #d5e3d8;border-radius:8px;display:grid;gap:5px}
+.cr-map-chain small{font-size:11px;color:#526d5e}
+.cr-map-chain strong{font-size:13px}
+.cr-map-chain p{font-size:12px!important}
+.cr-mapping>details>p{font-size:12px!important;margin-top:11px!important}
+.cr-case-footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;margin-top:16px}
+.cr-directory-controls{display:grid;grid-template-columns:minmax(180px,1fr) minmax(160px,.55fr) auto;gap:12px;align-items:end}
+.cr-directory-controls label{font-size:13px;font-weight:750;color:#375749;display:grid;gap:8px}
+.cr-directory-controls input,.cr-directory-controls select{width:100%;height:44px;background:#fff;border:1px solid #aec9b8;border-radius:7px;padding:9px 12px;font-size:14px;color:#163c31}
+.cr-directory-count{font-size:13px;color:#526958;margin:14px 0}
+.cr-directory-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.cr-directory-card{display:flex;align-items:center;justify-content:space-between;gap:13px;border:1px solid #d6e4d9;border-radius:9px;padding:15px;background:#fbfcfb;min-width:0}
+.cr-directory-card>div{display:grid;gap:6px;min-width:0}
+.cr-directory-card strong{font-size:14px;color:#234737}
+.cr-directory-card span{font-size:13px;color:#4f675a}
+.cr-directory-card small{font-size:12px;color:#496154}
+.cr-empty{grid-column:1/-1;padding:22px;background:#f4f7f4;border-radius:8px}
+.cr-empty strong{font-size:16px}
+.cr-empty p{margin:7px 0 12px!important}
+@media(max-width:1180px){.cr-matrix-head,.cr-mrow{grid-template-columns:minmax(110px,1.3fr) minmax(90px,1fr) minmax(90px,.9fr) minmax(95px,1fr) 91px;gap:7px}.cr-status{padding:6px;font-size:12px}.cr-directory-list{grid-template-columns:1fr}.cr-finding h2{font-size:21px!important}}
+@media(max-width:1100px){.cr-scale-steps{grid-template-columns:repeat(2,minmax(0,1fr))}.cr-matrix-head{display:none}.cr-matrix{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.cr-mrow{display:grid;grid-template-columns:1fr 1fr;gap:10px;border:1px solid #dbe7dd;border-radius:9px;padding:14px}.cr-case-identity{grid-column:1/-1}.cr-mrow .cr-button{grid-column:1/-1}.cr-mobile-label{display:block;color:#536c5d;font-size:11px;font-weight:740;margin-bottom:4px}.cr-matrix-foot{align-items:flex-start;flex-direction:column}.cr-case-head{align-items:flex-start;flex-direction:column}.cr-case-head-actions{justify-content:flex-start}.cr-directory-controls{grid-template-columns:1fr 1fr}.cr-directory-controls .cr-button{justify-self:start}.cr-req-head{display:none}.cr-requirement summary{grid-template-columns:1fr 1fr;gap:11px}.cr-task-name{grid-column:1/-1}.cr-band-cell small{display:block}.cr-req-status{grid-column:1/-1;justify-self:start}.cr-map-chain{grid-template-columns:1fr}.cr-map-chain>span{transform:rotate(90deg);justify-self:center}.cr-role-options{grid-template-columns:1fr 1fr}.cr-finding{align-items:flex-start;flex-direction:column}}
+@media(max-width:600px){.cr-guard{align-items:flex-start;flex-direction:column;gap:4px}.cr-metrics{grid-template-columns:1fr}.cr-panel{padding:15px}.cr-work-glance .cr-section-heading{align-items:flex-start;flex-direction:column}.cr-inline-details{margin-left:0}.cr-shift{flex-direction:column;align-items:stretch}.cr-arrow{transform:rotate(90deg);align-self:center}.cr-before-after{grid-template-columns:1fr}.cr-matrix{grid-template-columns:1fr}.cr-mrow{grid-template-columns:1fr 1fr}.cr-gates{grid-template-columns:1fr}.cr-role-options{grid-template-columns:1fr}.cr-case-context{position:static;flex-direction:column;align-items:flex-start}.cr-directory-controls{grid-template-columns:1fr}.cr-directory-card{flex-direction:column;align-items:stretch}.cr-directory-card .cr-button{align-self:flex-start}.cr-section-heading{flex-direction:column}.cr-case-footer>.cr-button{flex:1}.cr-decision-top{flex-direction:column}.cr-finding{padding:18px}.cr-scale-steps{grid-template-columns:1fr}.cr-req-status{max-width:100%}}
+@media(prefers-reduced-motion:reduce){#people *{scroll-behavior:auto!important;transition:none!important}}
+@media print{#people .cr-view[hidden]{display:none!important}}
+
+
+/* Page 4 controlled UX revision: native lists, always-visible evidence, no layout-floating disclosures. */
+#people .cr-work-glance .cr-section-heading{display:block;margin-bottom:14px}
+#people .cr-work-glance .cr-shift{margin-bottom:13px}
+#people .cr-work-glance .cr-inline-details{display:block;width:100%;max-width:none;margin:0;flex:none;min-width:0}
+#people .cr-work-glance .cr-inline-details>summary{display:inline-flex;align-items:center;gap:8px;list-style:none;min-height:40px;font-size:14px;color:#155f4e}
+#people .cr-work-glance .cr-inline-details>summary::-webkit-details-marker{display:none}
+#people .cr-work-glance .cr-inline-details>summary:before{content:'▸';font-size:15px;line-height:1}
+#people .cr-work-glance .cr-inline-details[open]>summary:before{content:'▾'}
+#people .cr-work-glance .cr-inline-details[open]{margin:0;width:100%}
+#people .cr-work-glance .cr-inline-details[open]>summary{margin-bottom:12px}
+#people .cr-work-glance .cr-inline-details .cr-before-after{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;width:100%;min-width:0}
+#people .cr-work-glance .cr-inline-details .cr-before-after>div{min-width:0}
+#people .cr-work-glance .cr-inline-details>p{font-size:13px!important;margin-top:11px!important;color:#405a4e}
+/* Information statuses are blue. Green remains primary interaction/navigation. */
+#people .cr-status.cr-sampled,#people .cr-req-status.cr-sampled{background:#e8f1ff;border:1px solid #b8cde9;color:#234e80}
+#people .cr-status.cr-sampled{font-weight:720}
+#people .cr-status.cr-review,#people .cr-req-status.cr-review{background:#fff3df;border:1px solid #edd1a8;color:#855a24}
+#people .cr-status.cr-hold,#people .cr-req-status.cr-hold,#people .cr-status.cr-danger{background:#fcebe8;border:1px solid #e5b7ae;color:#902f29}
+#people .cr-status,#people .cr-req-status{font-size:12.5px;line-height:1.35;max-width:100%;white-space:normal}
+/* One consistent enterprise table pattern across the employee worklist and case evidence. */
+#people .cr-directory-list{display:block;min-width:0}
+#people .cr-directory-table-wrap,#people .cr-evidence-table-wrap{width:100%;min-width:0;overflow-x:auto;border:1px solid #d7e3da;border-radius:9px}
+#people .cr-directory-table,#people .cr-evidence-table{width:100%;border-collapse:separate;border-spacing:0;table-layout:auto;margin:0;font-size:14px;color:#1f4035}
+#people .cr-directory-table thead,#people .cr-evidence-table thead{background:#eef4ef;color:#3f6253}
+#people .cr-directory-table th,#people .cr-evidence-table th{background:#eef4ef;padding:12px 14px;font-weight:760;font-size:12px;line-height:1.35;white-space:normal;text-transform:uppercase;letter-spacing:.025em;text-align:left;border-bottom:1px solid #cfddd2}
+#people .cr-directory-table td,#people .cr-evidence-table td{border-bottom:1px solid #e0e9e2;padding:12px 14px;vertical-align:middle;line-height:1.45;overflow-wrap:anywhere;background:white}
+#people .cr-directory-table tbody tr:last-child td,#people .cr-evidence-table tbody tr:last-child td{border-bottom:0}
+#people .cr-directory-table tbody tr:hover td{background:#f6f9f7}
+#people .cr-directory-table td strong{font-weight:770;color:#183f36}
+#people .cr-directory-table th:nth-child(1){width:11%}
+#people .cr-directory-table th:nth-child(2){width:10%}
+#people .cr-directory-table th:nth-child(3){width:19%}
+#people .cr-directory-table th:nth-child(4){width:19%}
+#people .cr-directory-table th:nth-child(5){width:26%}
+#people .cr-directory-table th:nth-child(6){width:15%}
+#people .cr-directory-table .cr-directory-permissions{display:flex;flex-wrap:wrap;gap:5px}
+#people .cr-directory-table .cr-button{font-size:13px!important;padding:8px 11px;min-height:37px;white-space:nowrap}
+#people .cr-directory-controls select{appearance:none;-webkit-appearance:none;-moz-appearance:none;padding-right:43px;background-color:#fff;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23335549' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-position:right 14px center;background-repeat:no-repeat;background-size:17px 17px;cursor:pointer}
+#people .cr-directory-controls select:focus-visible{outline:3px solid #d7a342;outline-offset:2px}
+#people .cr-evidence-group+.cr-evidence-group{margin-top:27px}
+#people .cr-evidence-group-title{margin:0 0 11px}
+#people .cr-evidence-group-title h3{font-size:18px;margin:0 0 4px;color:#1b4337}
+#people .cr-evidence-group-title p{margin:0;font-size:13.5px;line-height:1.55;color:#4d6659}
+#people .cr-evidence-table th:nth-child(1){width:34%}
+#people .cr-evidence-table th:nth-child(2){width:15%}
+#people .cr-evidence-table th:nth-child(3){width:15%}
+#people .cr-evidence-table th:nth-child(4){width:36%}
+#people .cr-evidence-table .cr-evidence-main td{padding-bottom:10px;border-bottom:0;background:#f7faf8}
+#people .cr-evidence-table .cr-evidence-main:nth-of-type(4n+3) td{background:#fff}
+#people .cr-evidence-task{display:flex;align-items:flex-start;gap:9px}
+#people .cr-evidence-task small{font-size:12px;color:#456a83;font-weight:800}
+#people .cr-evidence-task strong{font-size:14px;line-height:1.4;color:#1e4338}
+#people .cr-evidence-detail td{padding:0 12px 12px;background:#f7faf8;border-bottom:1px solid #ceded1}
+#people .cr-evidence-detail .cr-evidence-body{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 16px;margin:0;background:white;border:1px solid #d7e4db;border-radius:7px;padding:13px 15px;color:#395448;font-size:13.5px;line-height:1.55}
+#people .cr-evidence-detail .cr-evidence-body p{font-size:13.5px!important;line-height:1.53!important;margin:0!important;min-width:0}
+#people .cr-evidence-table .cr-req-status{display:inline-flex;padding:6px 9px}
+#people .cr-evidence-table th,#people .cr-directory-table th{color:#315445}
+@media(max-width:900px){
+ #people .cr-directory-table thead{display:none}
+ #people .cr-directory-table,#people .cr-directory-table tbody{display:block}
+ #people .cr-directory-table tbody{padding:8px}
+ #people .cr-directory-table tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1px solid #d6e2d8;border-radius:8px;margin-bottom:9px;background:#fff;overflow:hidden}
+ #people .cr-directory-table tbody tr:last-child{margin-bottom:0}
+ #people .cr-directory-table td{display:grid;grid-template-columns:1fr;gap:4px;border:0!important;padding:9px 12px;min-width:0}
+ #people .cr-directory-table td:before{content:attr(data-label);font-size:11px;color:#526d61;font-weight:750;letter-spacing:.02em}
+ #people .cr-directory-table td:first-child{grid-column:1/-1;background:#f2f6f2;font-size:16px}
+ #people .cr-directory-table td:nth-child(5){grid-column:1/-1}
+ #people .cr-directory-table td:nth-child(6){grid-column:1/-1;justify-items:start;border-top:1px solid #e0e9e2!important}
+ #people .cr-evidence-detail .cr-evidence-body{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+ #people .cr-work-glance .cr-inline-details .cr-before-after{grid-template-columns:1fr}
+ #people .cr-directory-table tbody tr{grid-template-columns:1fr}
+ #people .cr-directory-table td:nth-child(n){grid-column:1/-1}
+ #people .cr-evidence-table thead{display:none}
+ #people .cr-evidence-table,#people .cr-evidence-table tbody{display:block}
+ #people .cr-evidence-table tbody tr.cr-evidence-main{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0}
+ #people .cr-evidence-table .cr-evidence-main td{display:grid;gap:3px;padding:11px 12px 5px;border:0;min-width:0}
+ #people .cr-evidence-table .cr-evidence-main td:before{content:attr(data-label);font-size:11px;font-weight:750;color:#4b6559;letter-spacing:.02em}
+ #people .cr-evidence-table .cr-evidence-main td:first-child{grid-column:1/-1}
+ #people .cr-evidence-table .cr-evidence-main td:last-child{grid-column:1/-1;padding-bottom:10px}
+ #people .cr-evidence-table tr.cr-evidence-detail{display:block}
+ #people .cr-evidence-table .cr-evidence-detail td{display:block;padding:0 10px 12px}
+ #people .cr-evidence-detail .cr-evidence-body{padding:12px;grid-template-columns:1fr}
+}
+
+
+/* Page 4 table and role-mapping refinement (31 Oct 2026).
+   Shared table tokens apply to executive comparison, directory, and task evidence.
+   Table headers alone carry the tinted background; every data/evidence row is white. */
+#people{
+  --cr-table-head:#eef4ef;
+  --cr-table-head-text:#315445;
+  --cr-table-white:#ffffff;
+  --cr-table-line:#d7e3da;
+  --cr-table-divider:#e0e9e2;
+}
+#people .cr-matrix-head,
+#people .cr-directory-table thead,
+#people .cr-evidence-table thead{background:var(--cr-table-head);color:var(--cr-table-head-text)}
+#people .cr-matrix-head{
+  border:1px solid var(--cr-table-line);
+  border-bottom:1px solid #cfddd2;
+  border-radius:8px 8px 0 0;
+  padding:12px 14px;
+  font-size:12px;
+  letter-spacing:.025em;
+}
+#people .cr-directory-table th,
+#people .cr-evidence-table th{
+  background:var(--cr-table-head);
+  color:var(--cr-table-head-text);
+  padding:12px 14px;
+  font-size:12px;
+  letter-spacing:.025em;
+}
+#people .cr-matrix .cr-mrow{
+  padding:12px 14px;
+  background:var(--cr-table-white);
+  border-left:1px solid var(--cr-table-line);
+  border-right:1px solid var(--cr-table-line);
+  border-bottom:1px solid var(--cr-table-divider);
+}
+#people .cr-matrix .cr-mrow:last-child{
+  border-bottom:1px solid var(--cr-table-line);
+  border-radius:0 0 8px 8px;
+}
+#people .cr-directory-table tbody td,
+#people .cr-evidence-table tbody td,
+#people .cr-evidence-table .cr-evidence-main td,
+#people .cr-evidence-table .cr-evidence-main:nth-of-type(4n+3) td,
+#people .cr-evidence-table .cr-evidence-detail td{
+  background:var(--cr-table-white);
+}
+#people .cr-evidence-table .cr-evidence-main td{
+  border-bottom:0;
+  padding-bottom:9px;
+}
+#people .cr-evidence-table .cr-evidence-detail td{
+  padding:0 14px 13px;
+  border-bottom:1px solid var(--cr-table-divider);
+}
+#people .cr-evidence-table .cr-evidence-detail .cr-evidence-body{
+  margin:0;
+  background:var(--cr-table-white);
+  border:0;
+  border-top:1px solid var(--cr-table-divider);
+  border-radius:0;
+  padding:12px 2px 6px;
+  color:#395448;
+}
+#people .cr-evidence-table tbody tr:last-child td{
+  border-bottom:0;
+}
+#people .cr-directory-table tbody tr:hover td{background:var(--cr-table-white)}
+#people .cr-directory-table tbody tr:hover{outline:1px solid #9dbdaa;outline-offset:-1px}
+/* Source role mapping is a first-class, always-visible section, not a disclosure. */
+#people .cr-mapping .cr-section-heading{margin-bottom:14px}
+#people .cr-mapping .cr-map-chain{margin-top:0}
+#people .cr-mapping .cr-mapping-note{
+  margin:13px 0 0!important;
+  color:#466054;
+  font-size:13.5px!important;
+  line-height:1.55;
+}
+@media (max-width:1100px){
+ #people .cr-matrix .cr-mrow{
+   border:1px solid var(--cr-table-line);
+   border-radius:9px;
+ }
+ #people .cr-matrix .cr-mrow:last-child{border-radius:9px}
+}
+@media (max-width:900px){
+ #people .cr-directory-table tbody td:first-child{background:var(--cr-table-white)}
+}
+@media (max-width:640px){
+ #people .cr-evidence-table .cr-evidence-main td{background:var(--cr-table-white)}
+ #people .cr-evidence-table .cr-evidence-detail td{background:var(--cr-table-white);padding:0 12px 13px}
+ #people .cr-evidence-table .cr-evidence-detail .cr-evidence-body{padding:11px 1px 5px}
+}
+
+
+/* ===== Meridian controlled UX alignment: Page 3 + Page 4 and shared components ===== */
+:root{--ux-border:#c9d9d0;--ux-head:#edf3ee;--ux-copy:#304f44;--ux-blue:#e9f1ff;--ux-blue-ink:#244f81}
+#scenario .controls{margin-bottom:16px;align-items:stretch}#scenario .control-block{min-width:0}#scenario .controls+.foot-brief{margin-top:0}
+#demand{--ux-grid-gap:18px}#demand .de-hero{background:#fff;border:1px solid var(--ux-border);border-radius:11px;padding:22px;margin:18px 0;display:grid;grid-template-columns:minmax(0,1fr) minmax(370px,1.2fr);gap:18px;align-items:center}#demand .de-hero-copy{min-width:0}#demand .de-hero-copy h2{font-size:24px;margin:7px 0 10px;line-height:1.2}#demand .de-hero-copy p{font-size:14px;color:var(--ux-copy);margin:0;line-height:1.55}#demand .de-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}#demand .de-metrics>div{background:#f4f8f5;border:1px solid var(--ux-border);padding:14px;border-radius:8px;display:grid;align-content:start;gap:5px;min-width:0}#demand .de-metrics span{font-size:12px;color:#3e5e50;font-weight:750}#demand .de-metrics strong{font-size:25px;line-height:1.18;color:#173e33}#demand .de-metrics small{font-size:13px;line-height:1.4;color:#496659}
+#demand .de-ladder{background:#fff;border:1px solid var(--ux-border);border-radius:11px;padding:20px;margin:18px 0}#demand .de-section-heading{margin:0 0 15px}#demand .de-section-heading h2{font-size:19px;line-height:1.3;margin:5px 0 6px}#demand .de-section-heading p{font-size:14px;color:var(--ux-copy);margin:0;line-height:1.5}#demand .de-stages{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}#demand .de-stage{background:#f6f8f5;border:1px solid #d5e1d8;border-radius:8px;min-width:0;padding:15px;position:relative}#demand .de-stage:not(:last-child):after{content:'→';position:absolute;right:-18px;top:39%;font-size:21px;color:#1c6c58;font-weight:800}#demand .de-stage-current{border-color:#75ad92;background:#ecf6ef}#demand .de-stage strong{font-size:14px;color:#184639}#demand .de-stage p{font-size:13px;line-height:1.5;color:#456257;margin:7px 0 0}
+#demand .de-workspace{display:grid;grid-template-columns:minmax(0,1fr) minmax(340px,.97fr);gap:16px;align-items:start;margin:18px 0}#demand .de-register-panel,#demand .de-inspector{background:#fff;border:1px solid var(--ux-border);border-radius:11px;padding:20px;min-width:0;min-height:0}#demand .de-inspector{position:sticky;top:16px;scroll-margin-top:16px}#demand .de-table{width:100%;font-size:13.5px;border:1px solid var(--ux-border)}#demand .de-table th{background:var(--ux-head);padding:12px 10px;color:#355c4c;font-size:12px;letter-spacing:.04em}#demand .de-table td{padding:13px 10px;background:#fff;border-bottom:1px solid #dce7de;vertical-align:middle}#demand .de-table tr.de-role-row{cursor:pointer}#demand .de-table tr.de-role-row:hover td{background:#f4f9f5}#demand .de-table tr.de-role-row.is-selected td{background:#eaf5ee}#demand .de-table tr.de-role-row.is-selected td:first-child{border-left:3px solid #277d63}#demand .de-table tr.de-role-row:focus-visible{outline:3px solid #b78929;outline-offset:-3px}#demand .de-table tr.de-group td{background:#f0f4f1;color:#3a6452;font-size:12px;font-weight:760;padding:10px}#demand .de-table tr.de-subtotal td{background:#f7f9f7;font-weight:730}#demand .de-table tr.de-total td{background:#edf4ef;font-weight:800}#demand .demand-select{border:0;text-decoration:none;color:#176858;font-size:13.5px;font-weight:700;padding:3px 0;min-width:0;line-height:1.45}#demand .demand-select.active{background:none;box-shadow:none}#demand .demand-select:after{content:' · Selected';color:#276f56;font-size:11px;font-weight:650}#demand .demand-select:not(.active):after{content:''}#demand .de-small-note{font-size:13px;line-height:1.55;color:#466155;margin:11px 0 0}
+#demand .de-result{padding:15px;border:1px solid #c5dacf;border-radius:9px;background:#f1f7f3;display:grid;gap:9px;margin-bottom:12px}#demand #demandStatus{display:block;width:fit-content;font-size:17px;font-weight:800;line-height:1.3;padding:6px 10px;border:1px solid #e5c49d;background:#fff4e4;color:#865b29;border-radius:7px;letter-spacing:0}#demand #demandStatus.review-ready{border-color:#b8cbe0;background:#eaf2ff;color:#28557f}#demand #demandEvidenceCount{font-size:13px}#demand #demandEvidenceResult{font-size:13.5px;line-height:1.5;color:#355447;margin:0}#demand .de-checks{display:grid;gap:8px;margin:15px 0}#demand .de-checks .evidence-check{padding:12px;display:flex;background:#fff;border:1px solid #dce6dd;gap:10px;align-items:flex-start}#demand .de-checks .evidence-check strong{font-size:13px;line-height:1.45}#demand .de-checks .evidence-check strong em{font-size:12px;font-weight:600;color:#45665b;font-style:normal}#demand .de-checks .evidence-check small{font-size:13px;line-height:1.45;color:#456155}#demand #demandReset{font-size:13px}
+#demand .de-next{border:1px solid #c4d7c8;background:#eef5ef;border-radius:11px;padding:20px;margin:18px 0}#demand .de-next h2{font-size:20px;margin:7px 0}#demand .de-next-items{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-top:13px}#demand .de-next-items p{font-size:13.5px;color:#365448;line-height:1.5;background:#fff;border:1px solid #d8e5db;border-radius:8px;padding:13px;margin:0}#demand .de-navigation{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:20px 0}#demand .de-navigation .cr-button{font-size:13px}
+#people .cr-matrix-head,#people .cr-mrow{grid-template-columns:minmax(135px,1.35fr) minmax(115px,1fr) minmax(130px,1.15fr) minmax(165px,1.2fr)}#people .cr-mrow{cursor:pointer}#people .cr-mrow:hover{background:#f5faf6}#people .cr-mrow:focus-visible{outline:3px solid #b78929;outline-offset:-3px}#people .cr-mrow .cr-button{justify-self:end;width:auto;min-width:98px}#people .cr-next-label{display:block;font-size:13px;line-height:1.42;color:#284d42;font-weight:650;margin-bottom:7px}#people .cr-legend{display:flex;gap:12px;flex-wrap:wrap;padding-top:10px;font-size:13px;color:#436155}
+#people .cr-scale-steps{gap:18px}#people .cr-scale-steps>div{position:relative}#people .cr-scale-steps>div:not(:last-child):after{content:'→';position:absolute;right:-18px;top:45%;font-size:20px;color:#247b62;font-weight:800}#people .cr-scale-steps strong{font-size:14px}#people .cr-scale-steps span{font-size:13px}#people .cr-small-note,#people .cr-matrix-foot,#people .cr-section-heading p{font-size:14px;color:#3b5b4d;line-height:1.55}#people .cr-shift{display:grid;grid-template-columns:minmax(0,1fr) 26px minmax(0,1fr)}#people .cr-shift-before,#people .cr-shift-after{min-width:0;display:flex;align-items:center;padding:13px;line-height:1.45}#people .cr-inline-details>summary{border:1px solid #90bba6;background:#f2f8f4;border-radius:8px;padding:9px 13px;font-weight:760;margin-top:4px}#people .cr-case-context{z-index:5}#people .cr-role-options{margin-top:14px}#people .cr-evidence-group .cr-evidence-detail .cr-evidence-body p{line-height:1.5}#people .cr-metrics small,#people .cr-metrics a,#people .cr-metrics button{font-size:13px;line-height:1.45}#people .cr-metrics button{padding:0;text-decoration:underline}#people .cr-metrics a{color:#146e5b}
+@media(max-width:1200px){#demand .de-hero{grid-template-columns:1fr}#demand .de-workspace{grid-template-columns:1fr}#demand .de-inspector{position:static}#people .cr-matrix-head,#people .cr-mrow{grid-template-columns:minmax(110px,1.35fr) minmax(95px,1fr) minmax(130px,1.15fr) minmax(135px,1.2fr)}}
+@media(max-width:1100px){#people .cr-matrix-head{display:none}#people .cr-mrow{grid-template-columns:1fr 1fr}#people .cr-mrow .cr-button{justify-self:stretch}#people .cr-scale-steps>div:after{display:none}}
+@media(max-width:760px){#demand .de-hero{padding:16px}#demand .de-metrics{grid-template-columns:1fr}#demand .de-stages{grid-template-columns:1fr;gap:12px}#demand .de-stage:after{display:none}#demand .de-register-panel,#demand .de-inspector,#demand .de-ladder{padding:16px}#demand .de-next-items{grid-template-columns:1fr}#demand .de-table{font-size:12px}#demand .de-table td,#demand .de-table th{padding:10px 7px}#demand .de-navigation{flex-direction:column;align-items:stretch}#demand .de-navigation button{width:100%}#people .cr-shift{grid-template-columns:1fr}#people .cr-shift .cr-arrow{transform:rotate(90deg);text-align:center}#people .cr-metrics{grid-template-columns:1fr}#people .cr-mrow{grid-template-columns:1fr}#people .cr-mrow .cr-button{grid-column:1}#people .cr-scale-steps{gap:9px}}
+
+/* Final visual consistency: one table foundation across Exposure, Demand and Capability. */
+#exposure table,#demand .de-table,#people .cr-directory-table,#people .cr-evidence-table{font-size:13.5px;line-height:1.45}
+#exposure table th,#demand .de-table th,#people .cr-directory-table th,#people .cr-evidence-table th{background:#edf3ee;color:#365b4c;font-size:12px;line-height:1.4;letter-spacing:.035em;padding:12px 11px;font-weight:750}
+#exposure table tbody td,#demand .de-table tbody tr.de-role-row td,#people .cr-directory-table tbody td,#people .cr-evidence-table tbody td{background:#fff;border-bottom:1px solid #dce7de;padding:13px 11px;vertical-align:middle}
+#exposure table tbody tr:hover td,#people .cr-directory-table tbody tr:hover td{background:#f6faf7}
+#demand .de-table tbody tr.de-role-row.is-selected td{background:#eaf5ee}
+#demand .de-table tbody tr.de-group td,#demand .de-table tbody tr.de-subtotal td,#demand .de-table tbody tr.de-total td{padding:11px}
+@media(max-width:600px){
+ #demand .de-table{min-width:0;table-layout:fixed;width:100%}
+ #demand .de-table th:nth-child(1){width:49%}#demand .de-table th:nth-child(2){width:19%}#demand .de-table th:nth-child(3){width:32%}
+ #demand .de-table th,#demand .de-table tbody tr.de-role-row td{padding:9px 6px;font-size:11px;line-height:1.35;overflow-wrap:anywhere;white-space:normal}
+ #demand .de-table .data-tag{font-size:10px;white-space:normal;line-height:1.3;padding:4px}
+ #demand .de-table .demand-select{font-size:11.5px;line-height:1.35;white-space:normal;overflow-wrap:anywhere}
+ #demand .de-table tr.de-group td,#demand .de-table tr.de-total td,#demand .de-table tr.de-subtotal td{font-size:11.5px;padding:10px}
+}
+
+/* Page 3 QA polish — panel alignment, explicit row selection, and non-promoting packet readiness. */
+@media (min-width:1201px){
+ #demand .de-workspace{align-items:stretch}
+ #demand .de-workspace>.de-register-panel,#demand .de-workspace>.de-inspector{align-self:stretch;height:100%}
+}
+@media (max-width:1200px){
+ #demand .de-workspace{align-items:start}
+ #demand .de-workspace>.de-register-panel,#demand .de-workspace>.de-inspector{height:auto}
+}
+#demand .de-table tr.de-role-row{cursor:pointer}
+#demand .de-table tr.de-role-row:hover td{background:#f2f8f4}
+#demand .de-table tr.de-role-row.is-selected td{background:#e9f4ed}
+#demand .de-table .demand-select{
+ display:flex;align-items:center;justify-content:space-between;gap:9px;
+ width:100%;min-width:0;padding:5px 3px;border:0;background:transparent;
+ color:#145f52;cursor:pointer;text-align:left;
+}
+#demand .de-table .demand-select .de-choice-title{
+ text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px;
+ line-height:1.45;min-width:0;overflow-wrap:anywhere;
+}
+#demand .de-table .demand-select:hover .de-choice-title,
+#demand .de-table .demand-select:focus-visible .de-choice-title{text-decoration-thickness:2px}
+#demand .de-table .demand-select .de-choice-trailing{display:inline-flex;align-items:center;gap:5px;flex-shrink:0}
+#demand .de-choice-chevron{font-size:22px;line-height:1;color:#216b57;font-weight:500}
+#demand .de-choice-selected{display:none;font-size:11px;line-height:1.3;color:#245e4b;font-weight:750;white-space:nowrap}
+#demand .demand-select.active .de-choice-selected{display:inline-block}
+#demand .de-table .demand-select:after{content:none!important}
+#demand .de-table .demand-select:focus-visible{outline:3px solid #b78929;outline-offset:2px;border-radius:4px}
+#demand .de-packet-ready:not([hidden]){display:block;width:fit-content;font-size:11px;line-height:1.4;font-weight:730;color:#24557f;background:#eaf1ff;border:1px solid #b7cde5;border-radius:6px;padding:5px 7px;margin-top:6px}
+#demand .de-packet-ready[hidden]{display:none!important}
+#demand .de-navigation{justify-content:space-between}
+@media (max-width:760px){
+ #demand .de-table .demand-select{align-items:flex-start;gap:3px}
+ #demand .de-table .demand-select .de-choice-trailing{gap:2px}
+ #demand .de-choice-chevron{font-size:18px}
+ #demand .de-choice-selected{font-size:10px}
+}
+
+/* === 31 Oct 2026 / controlled UX QA revision: no model, deck or workbook changes === */
+/* Work transformation: comparison visible, step-aligned, and not an accordion. */
+#people .cr-work-glance .cr-section-heading{display:block;margin-bottom:15px}
+#people .cr-workflow-comparison{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px;align-items:stretch}
+#people .cr-workflow-header{display:flex;flex-direction:column;justify-content:center;gap:5px;min-width:0;padding:14px 16px;border:1px solid #d2dfd6;background:#f6f8f6;border-radius:9px 9px 0 0}
+#people .cr-workflow-header-proposed{border-color:#bcd7c9;background:#f0f7f2}
+#people .cr-workflow-kicker{font-size:12px;font-weight:800;color:#236955;letter-spacing:.075em}
+#people .cr-workflow-header strong{font-size:15px;line-height:1.4;color:#173d33}
+#people .cr-workflow-step{min-width:0;display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;column-gap:9px;min-height:61px;padding:10px 13px;border:1px solid #d9e5dc;border-top:0;background:#fff}
+#people .cr-workflow-step:nth-last-child(-n+2){border-radius:0 0 9px 9px}
+#people .cr-workflow-number{font-size:12px;color:#648075;font-weight:700;font-variant-numeric:tabular-nums}
+#people .cr-workflow-task{font-size:14px;line-height:1.45;font-weight:550;color:#244c3f}
+#people .cr-workflow-automated{background:#edf4fa;border-color:#c8d8e8}
+#people .cr-actor{font-size:12px;line-height:1.15;font-weight:750;white-space:nowrap;border:1px solid #d9e2db;border-radius:5px;padding:6px 8px;background:#f4f6f4;color:#526b60}
+#people .cr-actor-device,#people .cr-actor-rules{background:#e5f0fb;border-color:#b7d0eb;color:#275983}
+#people .cr-workflow-bridge{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-top:14px;padding:12px 14px;border-left:3px solid #237965;background:#f2f7f3;border-radius:0 7px 7px 0;line-height:1.5}
+#people .cr-workflow-bridge strong{font-size:13px;color:#245b49}
+#people .cr-workflow-bridge span{font-size:13px;color:#405c50}
+#people .cr-workflow-note{margin:10px 0 0;font-size:13px;line-height:1.55;color:#485f54}
+/* Board: simplify subsections; preserve scenario values and the four governance cards. */
+#board .board-detail>summary{font-size:17px;line-height:1.35;letter-spacing:-.01em;padding:17px 20px}
+#board .board-detail.board-implementation>summary{font-size:19px}
+#board .board-detail>summary:after{content:'';width:9px;height:9px;flex:0 0 9px;border-right:2px solid #25755f;border-bottom:2px solid #25755f;transform:rotate(45deg);margin:0 2px 4px 12px;transition:transform .15s ease}
+#board .board-detail[open]>summary:after{transform:rotate(225deg);margin-bottom:-4px}
+#board .board-detail>.board-detail-body{padding:17px 20px 20px;min-width:0}
+#board .board-detail-body .subtle{font-size:13px;line-height:1.55;margin:0 0 13px}
+#board .board-detail-body .table-scroll{border:1px solid #dce5df;border-radius:7px;overflow:auto}
+#board .board-detail-body th{font-size:12px}
+#board .board-detail-body td{font-size:13px}
+#board .board-governance .grid2{gap:12px}
+#board .board-governance .step{padding:17px;background:#fff;box-shadow:none}
+#board .board-governance .step-number{font-size:13px;line-height:1.35;margin-bottom:8px}
+#board .board-governance .step p{font-size:13px;line-height:1.55}
+/* Worker safeguards: icon close to the title, never vertically centered in the paragraph. */
+#board .lab-workers-note{grid-template-columns:20px minmax(0,1fr);column-gap:12px;align-items:start}
+#board .lab-workers-icon{display:flex;align-items:flex-start;justify-content:center;padding-top:2px}
+#board .lab-workers-note>div:last-child{min-width:0}
+@media(max-width:760px){
+ #people .cr-workflow-comparison{grid-template-columns:repeat(2,minmax(0,1fr));column-gap:8px}
+ #people .cr-workflow-header{padding:11px 10px}
+ #people .cr-workflow-header strong{font-size:13px}
+ #people .cr-workflow-step{grid-template-columns:18px minmax(0,1fr);gap:5px 7px;align-content:center;padding:9px 8px;min-height:80px}
+ #people .cr-workflow-task{font-size:12px}
+ #people .cr-actor{grid-column:2;justify-self:start;font-size:12px;padding:4px 6px}
+ #board .board-detail>.board-detail-body{padding:14px 12px 16px}
+ #board .board-detail>summary{padding:14px 13px;font-size:15px}
+ #board .board-detail.board-implementation>summary{font-size:17px}
+ #board .lab-workers-note{grid-template-columns:20px minmax(0,1fr);column-gap:12px}
+}
+@media(max-width:430px){
+ #people .cr-workflow-comparison{grid-template-columns:1fr;gap:0}
+ #people .cr-workflow-header-current{order:0}
+ #people .cr-workflow-header-proposed{order:5;margin-top:12px}
+ #people .cr-workflow-current{order:1}
+ #people .cr-workflow-proposed{order:6}
+ #people .cr-workflow-step{grid-template-columns:23px minmax(0,1fr) auto;min-height:51px;gap:7px}
+ #people .cr-actor{grid-column:auto}
+}
+
+
+/* Screen typography floor: avoid undersized dashboard labels, keep footer disclaimer untouched. */
+@media screen {
+ .app .marker,
+ #scenario .lab-note-icon,
+ #scenario #gapChart text,
+ #demand .de-choice-selected,
+ #people .cr-guard strong,
+ #people .cr-overline,
+ #people .cr-scale-steps small,
+ #people .cr-map-chain small,
+ #board .board-hero-label,
+ #board .board-hero-flags span,
+ #board .lab-microtag,
+ #board .lab-score-grid small,
+ #board .board-kpi>span,
+ #board .lab-capture-labels span,
+ #board .lab-capture-result small{font-size:12px!important}
+}
+
+/* Responsive comparison uses one readable column when sidebar constrains width. */
+@media(max-width:950px){
+ #people .cr-workflow-comparison{grid-template-columns:1fr;gap:0}
+ #people .cr-workflow-header-current{order:0}
+ #people .cr-workflow-header-proposed{order:5;margin-top:12px}
+ #people .cr-workflow-current{order:1}
+ #people .cr-workflow-proposed{order:6}
+ #people .cr-workflow-header{padding:12px 13px}
+ #people .cr-workflow-header strong{font-size:14px}
+ #people .cr-workflow-step{grid-template-columns:23px minmax(0,1fr) auto;gap:7px;min-height:54px;padding:10px 12px}
+ #people .cr-workflow-task{font-size:13px}
+ #people .cr-actor{grid-column:auto}
+}
+@media screen {
+ #people .cr-mobile-label,
+ #demand .de-table th,
+ #demand .de-table td{font-size:12px!important}
+}
+
+@media screen{#demand .de-choice-title,#demand .data-tag{font-size:12px!important}}
+</style><meta content="Self-contained case-study decision support: exposure, scenario dynamics, demand evidence, capability pathways and Board gates." name="description"/></head><body><div class="app antialiased"><aside class="side shadow-xl"><div class="brand"><div class="mark"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg></div><div><strong>MERIDIAN</strong><span>WORKFORCE DECISION LAB</span></div></div><nav aria-label="Main navigation" class="nav"><button aria-current="page" class="active" data-page="exposure" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><rect height="7" rx="1" width="7" x="3" y="3"></rect><rect height="7" rx="1" width="7" x="14" y="3"></rect><rect height="7" rx="1" width="7" x="3" y="14"></rect><rect height="7" rx="1" width="7" x="14" y="14"></rect></svg><em>01</em> Exposure map</button><button aria-current="false" data-page="scenario" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="M4 19V5"></path><path d="M4 19h17"></path><path d="m7 15 4-4 3 2 5-7"></path></svg><em>02</em> Scenario lab</button><button aria-current="false" data-page="demand" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="M4 12.5 9 17l11-11"></path></svg><em>03</em> Demand evidence</button><button aria-current="false" data-page="people" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 3 9 5-9 5-9-5 9-5Z"></path><path d="m3 12 9 5 9-5M3 16l9 5 9-5"></path></svg><em>04</em> Capability &amp; transition</button><button aria-current="false" data-page="board" type="button"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 2 8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg><em>05</em> Board decision</button></nav></aside><main class="main min-w-0"><div class="topbar flex items-start justify-between gap-4"><span class="eyebrow">Project Meridian / Director of Human Capital</span><div class="top-right"><span class="pill">SYNTHETIC DEMO</span></div></div>
+<section class="page active" id="exposure"><div class="header-row"><div><span class="eyebrow">01 / Enterprise view</span><h1>52,000 employees. One urgent transition. Many unanswered questions.</h1><p class="lede">Compare absolute potential task exposure with time-to-impact and evidence confidence. Exposure volume alone does not determine priority.</p><button class="small-button primary mt-2 mb-4" data-open="people" type="button">Explore capability &amp; transition cases</button></div></div><div class="cards gap-4"><div class="card rounded-xl"><div class="marker">Enterprise workforce</div><div class="metric">52,000</div><small>Case fact · 6 regional units + HQ</small></div><div class="card rounded-xl"><div class="marker">Job title complexity</div><div class="metric">1,800+</div><small>Case fact · normalization needed</small></div><div class="card rounded-xl"><div class="marker">Priority cohort</div><div class="metric">6,000</div><small>Field Metering · case fact</small></div><div class="card rounded-xl"><div class="marker">Priority exposure</div><div class="metric">4,200</div><small>Automatable work equivalents, not workers for exit</small></div></div><div class="panel rounded-2xl"><div class="panel-top"><div><h2>Enterprise job-family exposure</h2><p class="subtle">The 11 non-Field-Metering families and their 24–36 month timing are synthetic hypotheses, not Client findings. Exposure is potential task change, not realized displacement. Reskillability is UNASSESSED until task evidence, safety requirements and real receiving work have been checked.</p></div><button class="small-button" id="sortBtn">Sort: workforce size</button></div><div class="table-scroll"><table><thead><tr><th>Job family</th><th>Workforce</th><th>Task exposure</th><th>Absolute work equivalents</th><th>Time-to-impact</th><th>Evidence</th><th></th></tr></thead><tbody id="exposureRows"></tbody></table></div><div class="foot-brief" id="exposureSummary" style="margin-top:18px"></div></div><div class="alert"><strong>Why Field Metering first?</strong> Its 4,200 WE is the largest single-family figure in this illustrative comparison, but Field Metering is the only family with brief-sourced exposure and an 18-month clock. The other 11 families have unvalidated synthetic ranges and timing. Prioritise by <strong>evidence maturity × urgency</strong>, not by exposure size alone.</div></section>
 <section class="page" id="scenario"><span class="eyebrow">02 / Transition pressure</span><h1>Automation creates capacity pressure. Demand determines whether it becomes a transition.</h1><p class="lede">Toggle contractor opportunities and rollout control. Watch the gap curve respond—then compare the assumed receiving capacity against the capacity required to close the transition.</p><div class="lab-inline-note" role="note"><span class="lab-note-icon">MODEL BASIS</span><span><strong>4,200 exposed WE × 85% synthetic realisation = 3,570 modelled displacement.</strong> The 65% conversion factor is a planning assumption—not a measured percentage of employees who are ready.</span></div><p class="subtle" style="margin:0 0 18px">This is the scale challenge. <button class="linkish" data-open="people" type="button">See how capability transformation works →</button></p><div class="panel rounded-2xl"><div class="panel-top"><div><h2>Choose your operating reality</h2><div class="subtle">Both controls change the scenario immediately</div></div><span class="pill">36-month horizon · synthetic</span></div><div class="controls"><div class="control-block"><label>Contractor substitution demand</label><div aria-label="Contractor demand" class="toggle" role="group"><button aria-pressed="true" class="selected" data-contract="on">Included</button><button aria-pressed="false" data-contract="off">Zero contractor</button></div></div><div class="control-block"><label>Rollout sequencing authority</label><div aria-label="Rollout mode" class="toggle" role="group"><button aria-pressed="true" class="selected" data-gate="off">Cannot gate</button><button aria-pressed="false" data-gate="on">Can gate</button></div></div></div><div class="foot-brief" style="margin-bottom:14px"><strong>Exposure is not realized displacement.</strong> Brief estimate: 6,000 × 70% = <strong>4,200 exposed-work equivalents</strong>. Scenario assumption: 85% realization of that exposed work = <strong>3,570 modelled displaced-work equivalents</strong>. Neither figure is a number of people to dismiss.</div><div class="aha rounded-2xl"><div class="aha-header"><div><div class="kicker">THE CAPACITY TEST · MONTH 18</div><h2>Receiving work assumed vs required</h2><p class="subtle">Required uses 3,570 displacement − 225 relevant attrition, divided by 65% readiness. Contractor toggle removes 240 illustrative work slots.</p></div><div class="capacity-status" id="capacityStatus" role="status">Capacity insufficient</div></div><div class="bars"><div class="bar-item"><strong>Assumed capacity</strong><div class="bar-track"><div class="bar-fill" id="assumedBar" style="width:17.5%"></div></div><div class="bar-value num" id="assumedVal">900</div></div><div class="bar-item"><strong>Required capacity</strong><div class="bar-track"><div class="bar-fill required" style="width:100%"></div></div><div class="bar-value num">5,146</div></div></div><div class="aha-foot"><strong id="capacitySentence">Only 17% of required receiving work is assumed.</strong><span>Receiving-work FTE equivalents · not confirmed job vacancies</span></div></div><div class="chart-layout gap-5"><div class="chart-wrap"><div class="panel-top"><div><h2 id="chartTitle">Unresolved transition gap</h2><p class="subtle">Illustrative monthly scenarios · M0–M36</p></div><div aria-label="Chart components" class="chart-modes" role="group"><button aria-pressed="true" class="mode-button selected" data-chart-mode="gap">Gap only</button><button aria-pressed="false" class="mode-button" data-chart-mode="all">All components</button></div></div><svg aria-label="Illustrative 36-month workforce transition model. Selected scenario and comparator update with rollout and contractor controls." class="chart" id="gapChart" role="img" viewbox="0 0 760 300"></svg><div class="legend" id="chartLegend"><span><i class="dot" style="background:#126c5d"></i>Selected scenario</span><span><i class="dot" style="background:#b6c7bf"></i>Comparison: other rollout mode</span></div><div aria-live="polite" class="chart-readout" id="chartReadout">Hover chart or use the month selector to inspect a period.</div><div class="month-selector"><label for="monthSlider">Inspect month</label><input id="monthSlider" max="36" min="0" step="1" type="range" value="18"/><strong id="selectedMonth">M18</strong></div></div><div class="side-stat"><div class="stat-tile"><div class="marker">Gap at month 10</div><b id="gapM10">—</b><small class="mini" id="m10Comparison">1,201 WE above gateable</small></div><div class="stat-tile"><div class="marker">Unresolved at M36</div><b id="gapM36">2,535</b><small class="mini">Work equivalents, not people</small></div><div class="stat-tile"><div class="marker">M36 remaining</div><b id="remainPct">71%</b><small class="mini">Of 3,570 realized displaced work</small></div></div></div><div class="decision" style="margin-top:15px"><strong id="scenarioDecision">Decision: validate demand before expansion.</strong><p id="scenarioDescription">Without validated receiving work, the model does not support a full-absorption promise. Non-gateable rollout makes the timing risk more immediate.</p></div><div class="foot-brief" style="margin-top:15px"><strong>Decision rule:</strong> Selective gating is worth evaluating only where verified receiving work exists, extra months improve assessed readiness, and Operations/Technology can authorize the timing. Any delay-related economic cost must be validated with Operations and Finance; it is not assumed as a confirmed cash expense.<br/><br/><strong>Calculation boundary:</strong> required work = (3,570 realized displacement − 225 relevant attrition)/0.65 = 5,146 at M18. This is a target to discover/validate, not open positions. Monthly curves use a consistent illustrative 36-month model, not interpolated anchors. They represent synthetic scenarios, not actual placements.<br/><br/>Gating shifts timing. In this demonstration the two rollout modes converge by approximately M20; gating does <strong>not</strong> create permanent new roles or reduce the ultimate gap. These curves are calculated from one consistent 36-month illustrative scenario dataset; they are not validated operational forecasts.</div></div></section>
-<section class="page" id="demand"><span class="eyebrow">03 / Evidence, not vacancies by assertion</span><h1>A receiving role is real only when the work is real.</h1><p class="lede">Move from claimed demand to independently backed and matchable demand before authorizing individual assessments or a scaled transition.</p><div class="lab-inline-note"><span class="lab-note-icon">EVIDENCE RULE</span><span><strong>Zero Backed roles at Day 60 ≠ zero underlying demand.</strong> It means the evidence is insufficient for scaled matching; unresolved capacity and work redesign still require an explicit Board decision.</span></div><div class="grid2 gap-5"><div class="panel rounded-2xl"><h2>Illustrative demand register</h2><div class="table-scroll"><table><thead><tr><th>Destination work</th><th>Capacity</th><th>Stage</th></tr></thead><tbody><tr><td><button class="demand-select" data-demand-id="data" type="button" aria-pressed="true">Meter data verification <span aria-hidden="true">↗</span></button></td><td>300</td><td><span class="data-tag low">Claimed · demo</span></td></tr><tr><td><button class="demand-select" data-demand-id="exception" type="button" aria-pressed="false">Smart-meter exception resolution <span aria-hidden="true">↗</span></button></td><td>220</td><td><span class="data-tag low">Claimed · demo</span></td></tr><tr><td><button class="demand-select" data-demand-id="assurance" type="button" aria-pressed="false">Digital work-order assurance <span aria-hidden="true">↗</span></button></td><td>140</td><td><span class="data-tag low">Claimed · demo</span></td></tr><tr><td><button class="demand-select" data-demand-id="contractor" type="button" aria-pressed="false">Contractor substitution (optional) <span aria-hidden="true">↗</span></button></td><td>240</td><td><span class="data-tag low">Unverified · demo</span></td></tr></tbody></table></div><p class="subtle" style="margin-top:15px">Totals: 660 non-contractor + 240 contractor = 900 assumed receiving-work equivalents. No receiving-work line item has been verified against Client records. Assumed receiving-work capacity is not the same as successful placements.</p></div><div class="panel rounded-2xl"><h2>Evidence promotion rules</h2><div class="stack"><div class="step rounded-xl"><div class="step-number">01 · CLAIMED</div><h3>Someone expects the need</h3><p>Stakeholder statement; not enough to promise placements.</p></div><div class="step rounded-xl"><div class="step-number">02 · BACKED</div><h3>Workload, budget and timing tested</h3><p>Two materially independent sources, operating owner and funded/authorized capacity.</p></div><div class="step rounded-xl"><div class="step-number">03 · MATCHABLE</div><h3>Human feasibility checked</h3><p>Capability, time-to-competence, location, legal authority, safety, consent and staffing constraints.</p></div><div class="step rounded-xl"><div class="step-number">04 · CONFIRMED PLACEMENT</div><h3>Separate observed outcome</h3><p>Recorded only after an actual authorised human decision and transition.</p></div></div></div></div><section class="evidence-inspector" aria-label="Receiving work evidence inspector">
- <div class="evidence-inspector-heading"><div><span class="eyebrow">EVIDENCE INSPECTOR · SIMULATED INPUTS</span><h2>Why isn't this role Backed?</h2><p class="subtle">Choose a role in the demand register. The four governance conditions stay fixed; the example evidence required under each condition changes by role. Checking boxes simulates a packet—not actual Client validation.</p></div><span class="evidence-status" id="demandStatus">NOT BACKED</span></div>
- <div class="evidence-inspector-body"><div>
-  <div class="evidence-role-title" id="demandRoleTitle">Meter data verification</div>
-  <p class="subtle" id="demandRoleContext">Illustrative role, 300 WE capacity. Workload and funding are not yet corroborated.</p>
-  <div class="evidence-prereqs" id="demandChecks" role="group" aria-label="Hypothetical evidence packet requirements">
-   <label class="evidence-check"><input type="checkbox" data-proof="workload"/><span><strong>Independent workload trace</strong><small>Observed task-hours or verified service volume</small></span></label>
-   <label class="evidence-check"><input type="checkbox" data-proof="corroboration"/><span><strong>Second independent source</strong><small>Independent from the originating workload claim</small></span></label>
-   <label class="evidence-check"><input type="checkbox" data-proof="funding"/><span><strong>Funded or authorised capacity</strong><small>Finance and accountable operating owner</small></span></label>
-   <label class="evidence-check"><input type="checkbox" data-proof="timing"/><span><strong>Timing and task requirements</strong><small>Work driver, location, safety and SME confirmation</small></span></label>
-  </div></div><div class="evidence-result" aria-live="polite">
-    <span class="marker">BACKED READINESS · ILLUSTRATIVE</span><div class="evidence-progress"><span id="demandEvidenceProgress" style="width:0%"></span></div>
-    <strong id="demandEvidenceCount">0 of 4 conditions represented</strong>
-    <p id="demandEvidenceResult">No independent workload, corroboration, or funded capacity has been supplied. Treat the role as Claimed only.</p>
-    <div class="evidence-notice">Even with four simulated checks, the highest outcome here is <b>ready for independent review</b>—never a verified Client role or placement.</div>
-    <button class="small-button" id="demandReset" type="button">Reset simulated evidence</button>
-  </div></div>
- </section><div class="alert">Within 30 days: Operations supplies sampled task-hours and service workload; Finance/Procurement validates contractor contract expiry, avoidability and vendor spend. When evidence fails, keep demand at “claimed”—do not manufacture absorption capacity.</div></section>
-<section class="page" id="people">
-<span class="eyebrow">04 / Capability transformation</span>
-<h1>See the capability behind the job title.</h1>
-<p class="lede">A fictional Field Metering example illustrates how work changes, task-specific evidence becomes visible, and a development pathway is considered—without changing contractual status or promising placement.</p>
-<div class="status-key" aria-label="Evidence labels"><span><i class="status-dot fact"></i>Case fact</span><span><i class="status-dot synthetic"></i>Synthetic illustration</span><span><i class="status-dot pending"></i>Unassessed / unverified</span><span class="status-key-note">Confidence in a work sample ≠ funded receiving demand</span></div><div class="cap-banner">
-<div><span class="cap-overline">SOLUTION AHA · FICTIONAL PARTICIPANT</span><h2>The title hid the capability. Now the evidence makes it visible.</h2><p>Evidence makes an adjacent pathway testable. Receiving-work demand and employment decisions still require separate approval.</p></div>
-<span class="cap-identity">FM-027 <small>Voluntary pilot example</small></span>
+<section class="page" id="demand">
+ <span class="eyebrow">03 / Receiving-work evidence</span>
+ <h1>A receiving role is real only when the work is real.</h1>
+ <p class="lede">Review proposed work, inspect the independent evidence needed to validate it, and decide what to investigate next. This demonstration does not certify any receiving vacancy.</p>
+ <section class="de-hero" aria-label="Receiving-work decision summary">
+  <div class="de-hero-copy"><span class="eyebrow">DECISION AT A GLANCE</span><h2>No receiving work independently verified</h2><p>Four illustrative lines total 900 assumed work equivalents (WE), not vacancies. If no role passes the Backed evidence gate by Day 60 of the engagement, scaled matching cannot be authorised; the Board must address unresolved capacity.</p></div>
+  <div class="de-metrics" aria-label="Illustrative evidence metrics">
+   <div><span>Client-backed roles</span><strong>0 / 4</strong><small>None independently verified</small></div>
+   <div><span>Non-contractor capacity</span><strong>660 WE</strong><small>Three synthetic proposals</small></div>
+   <div><span>Optional contractor</span><strong>240 WE</strong><small>Contract avoidability not proved</small></div>
+  </div>
+ </section>
+ <section class="de-ladder" aria-labelledby="deLadderHeading"><div class="de-section-heading"><span class="eyebrow">EVIDENCE STANDARD</span><h2 id="deLadderHeading">Each role must clear the next gate before its status can advance.</h2></div>
+  <div class="de-stages">
+   <div class="de-stage de-stage-current"><strong>01 · Claimed</strong><p>A stakeholder expects the work; this is the stage of all four illustrative roles.</p></div>
+   <div class="de-stage"><strong>02 · Backed</strong><p>Independent workload sources, accountable owner, funded/authorised capacity and timing.</p></div>
+   <div class="de-stage"><strong>03 · Matchable</strong><p>Task skills, location, time-to-competence, safety and consent checked.</p></div>
+   <div class="de-stage"><strong>04 · Confirmed placement</strong><p>Actual authorised human decision and recorded transition. Never inferred from a simulation.</p></div>
+  </div>
+ </section>
+ <section class="de-workspace" aria-label="Select receiving work and inspect its evidence">
+  <div class="de-register-panel">
+   <div class="de-section-heading"><span class="eyebrow">RECEIVING-WORK REGISTER</span><h2>Choose work to investigate</h2><p>Click a row to inspect the evidence conditions alongside it. All capacities are illustrative.</p></div>
+   <div class="table-scroll"><table class="de-table"><thead><tr><th scope="col">Proposed destination work</th><th scope="col">Capacity (WE)</th><th scope="col">Stage</th></tr></thead><tbody>
+    <tr class="de-group"><td colspan="3">Non-contractor work · 660 WE assumed</td></tr>
+    <tr class="de-role-row" data-demand-row="data" title="Select to inspect Meter data verification evidence"><td><button class="demand-select" data-demand-id="data" aria-pressed="true" aria-label="Inspect evidence for Meter data verification" type="button"><span class="de-choice-title">Meter data verification</span><span class="de-choice-trailing" aria-hidden="true"><span class="de-choice-selected">Selected</span><span class="de-choice-chevron">›</span></span></button></td><td>300</td><td><span class="data-tag pending">Claimed · demo</span><span class="de-packet-ready" data-packet-for="data" hidden>Packet ready for review</span></td></tr>
+    <tr class="de-role-row" data-demand-row="exception" title="Select to inspect Smart-meter exception resolution evidence"><td><button class="demand-select" data-demand-id="exception" aria-pressed="false" aria-label="Inspect evidence for Smart-meter exception resolution" type="button"><span class="de-choice-title">Smart-meter exception resolution</span><span class="de-choice-trailing" aria-hidden="true"><span class="de-choice-selected">Selected</span><span class="de-choice-chevron">›</span></span></button></td><td>220</td><td><span class="data-tag pending">Claimed · demo</span><span class="de-packet-ready" data-packet-for="exception" hidden>Packet ready for review</span></td></tr>
+    <tr class="de-role-row" data-demand-row="assurance" title="Select to inspect Digital work-order assurance evidence"><td><button class="demand-select" data-demand-id="assurance" aria-pressed="false" aria-label="Inspect evidence for Digital work-order assurance" type="button"><span class="de-choice-title">Digital work-order assurance</span><span class="de-choice-trailing" aria-hidden="true"><span class="de-choice-selected">Selected</span><span class="de-choice-chevron">›</span></span></button></td><td>140</td><td><span class="data-tag pending">Claimed · demo</span><span class="de-packet-ready" data-packet-for="assurance" hidden>Packet ready for review</span></td></tr>
+    <tr class="de-subtotal"><td>Non-contractor subtotal</td><td>660</td><td>Assumed</td></tr>
+    <tr class="de-group"><td colspan="3">Optional contractor work · separate contract and authorisation tests</td></tr>
+    <tr class="de-role-row" data-demand-row="contractor" title="Select to inspect Contractor substitution (optional) evidence"><td><button class="demand-select" data-demand-id="contractor" aria-pressed="false" aria-label="Inspect evidence for Contractor substitution (optional)" type="button"><span class="de-choice-title">Contractor substitution (optional)</span><span class="de-choice-trailing" aria-hidden="true"><span class="de-choice-selected">Selected</span><span class="de-choice-chevron">›</span></span></button></td><td>240</td><td><span class="data-tag pending">Unverified · demo</span><span class="de-packet-ready" data-packet-for="contractor" hidden>Packet ready for review</span></td></tr>
+    <tr class="de-total"><td>Combined hypothetical capacity</td><td>900</td><td>Not validated</td></tr>
+   </tbody></table></div>
+   <p class="de-small-note">The contractor line is optional and requires both a real internal task need and separately avoidable vendor expenditure. These capacities are not placement counts.</p>
+  </div>
+  <section class="de-inspector" aria-label="Receiving work evidence inspector">
+   <div class="de-section-heading"><span class="eyebrow">SIMULATED EVIDENCE REVIEW</span><h2 id="demandRoleTitle">Meter data verification</h2><p id="demandRoleContext">Illustrative role, 300 WE capacity. Workload and funding are not yet corroborated.</p></div>
+   <div class="de-result" aria-live="polite"><span class="eyebrow">CURRENT EVIDENCE POSITION</span><strong class="evidence-status" id="demandStatus">NOT BACKED</strong><div class="evidence-progress"><span id="demandEvidenceProgress" style="width:0%"></span></div><strong id="demandEvidenceCount">0 of 4 simulated conditions represented</strong><p id="demandEvidenceResult">The selected role stays Claimed.</p></div>
+   <p class="de-small-note">Try the checkboxes to simulate an evidence packet. Checking all four makes the packet <strong>ready for independent review</strong>, never a verified Client role.</p>
+   <div id="demandChecks" class="de-checks" role="group" aria-label="Simulated evidence conditions">
+    <label class="evidence-check"><input data-proof="workload" type="checkbox"/><span><strong>1. Workload trace <em>· Operations</em></strong><small>Observed task-hours or verified service volume</small></span></label>
+    <label class="evidence-check"><input data-proof="corroboration" type="checkbox"/><span><strong>2. Independent corroboration <em>· Operations / QA</em></strong><small>Independent of initial workload claim</small></span></label>
+    <label class="evidence-check"><input data-proof="funding" type="checkbox"/><span><strong>3. Authorised capacity <em>· Finance + owner</em></strong><small>Funding and accountable operating owner</small></span></label>
+    <label class="evidence-check"><input data-proof="timing" type="checkbox"/><span><strong>4. Timing and task safety <em>· Operations / Safety</em></strong><small>Location, task requirements and SME confirmation</small></span></label>
+   </div>
+   <button class="small-button" id="demandReset" type="button">Reset simulated packet</button>
+  </section>
+ </section>
+ <section class="de-next" aria-labelledby="deNextHeading"><div><span class="eyebrow">NEXT 30 DAYS</span><h2 id="deNextHeading">Request evidence before making a workforce promise.</h2></div><div class="de-next-items"><p><strong>Operations:</strong> sample task-hours, actual service volume and an independent operational record.</p><p><strong>Finance / Procurement:</strong> validate authorised capacity; for contractors, confirm contract expiry, rights and genuinely avoidable spend.</p><p><strong>HC / Safety:</strong> confirm task rubric and safeguards. If evidence fails, retain Claimed status and escalate the structural gap.</p></div></section>
+ <div class="de-navigation" aria-label="Demand evidence journey navigation"><button type="button" class="cr-button cr-button-outline" data-open="scenario">← Back to Scenario lab</button><button type="button" class="cr-button cr-button-primary" data-open="people">Continue to Capability &amp; transition →</button></div>
+</section>
+<section class="page" id="people" aria-label="Capability and transition review">
+  <div class="cr-guard" role="note"><strong>DEMONSTRATION DATA</strong><span>Fictional employee examples · Task assessment is not placement · No payroll, dismissal or automated employment decisions</span></div>
+
+  <div id="crOverview" class="cr-view">
+    <span class="eyebrow">04 / CAPABILITY & TRANSITION REVIEW</span>
+    <h1>We can test a person's capabilities. We cannot promise work that has not been verified.</h1>
+    <p class="cr-intro">Start with four contrasting Field Metering cases. See what each person's task evidence supports, what still blocks a transition, and the next responsible action.</p>
+    <div class="cr-finding" role="status">
+      <div><span class="cr-overline">DECISION AT A GLANCE</span><h2>Director decision: review evidence gaps before approving any transition programme.</h2><p>Select an example below to inspect its evidence and next action. Receiving work remains a separate Operations and Finance decision.</p></div>
+      <button type="button" class="cr-button cr-button-light" data-cr-open="FM-027">Explore an example <span aria-hidden="true">→</span></button>
+    </div>
+    <div class="cr-metrics" aria-label="Illustrative demonstration scope">
+      <div><span>Cases with authority hold</span><strong>2 / 4</strong><small>FM-027 pending; FM-033 expired · <a href="#crCompareHeading">Compare cases</a></small></div>
+      <div><span>Client-backed candidate roles</span><strong>0 / 3</strong><small>Non-contractor proposals · <button class="cr-text-button" type="button" data-open="demand">Review demand</button></small></div>
+      <div><span>Cases with contested task evidence</span><strong>1 / 4</strong><small>FM-021 · <button type="button" class="cr-text-button" data-cr-open="FM-021">Open case</button></small></div>
+    </div>
+    <section class="cr-panel" aria-labelledby="crCompareHeading">
+      <div class="cr-section-heading"><div><span class="cr-overline">SAME RULES · DIFFERENT NEXT STEPS</span><h2 id="crCompareHeading">Four cases. Different evidence, different next actions.</h2><p>Each case is compared with <strong>Meter data verification</strong>. Choose a row to see the evidence behind its recommended action.</p></div></div>
+      <div class="cr-matrix-head" aria-hidden="true"><span>Fictional case</span><span>Task evidence</span><span>Consent &amp; authority</span><span>Next action / Review</span></div>
+      <div id="crMatrix" class="cr-matrix"></div>
+      <div class="cr-matrix-foot"><span>Receiving work is unverified for all four cases. Blue = evidence recorded; amber = needs review; red = hold or disputed.</span><button type="button" class="cr-text-button" id="crOpenDirectory">Browse all 24 fictional records <span aria-hidden="true">→</span></button></div>
+    </section>
+    <section aria-labelledby="crWorkHeading" class="cr-panel cr-work-glance">
+<div class="cr-section-heading"><div><span class="cr-overline">WHY CAPABILITIES CHANGE</span><h2 id="crWorkHeading">The work moves from collecting readings to resolving exceptions.</h2></div></div>
+<div class="cr-workflow-comparison" aria-label="Illustrative current and proposed workflow comparison">
+<div class="cr-workflow-header cr-workflow-header-current"><span class="cr-workflow-kicker">TODAY</span><strong>Manual collection</strong></div>
+<div class="cr-workflow-header cr-workflow-header-proposed"><span class="cr-workflow-kicker">PROPOSED</span><strong>Human exception investigation, digital verification and assurance</strong></div>
+<div class="cr-workflow-step cr-workflow-current"><span class="cr-workflow-number">01</span><span class="cr-workflow-task">Visit and read meter</span><span class="cr-actor cr-actor-human">Human</span></div>
+<div class="cr-workflow-step cr-workflow-proposed cr-workflow-automated"><span class="cr-workflow-number">01</span><span class="cr-workflow-task">Device sends a reading or alert</span><span class="cr-actor cr-actor-device">Device</span></div>
+<div class="cr-workflow-step cr-workflow-current"><span class="cr-workflow-number">02</span><span class="cr-workflow-task">Record locally</span><span class="cr-actor cr-actor-human">Human</span></div>
+<div class="cr-workflow-step cr-workflow-proposed cr-workflow-automated"><span class="cr-workflow-number">02</span><span class="cr-workflow-task">Rules flag an exception</span><span class="cr-actor cr-actor-rules">Rules</span></div>
+<div class="cr-workflow-step cr-workflow-current"><span class="cr-workflow-number">03</span><span class="cr-workflow-task">Flag and check anomaly</span><span class="cr-actor cr-actor-human">Human</span></div>
+<div class="cr-workflow-step cr-workflow-proposed "><span class="cr-workflow-number">03</span><span class="cr-workflow-task">Human investigates and resolves</span><span class="cr-actor cr-actor-human">Human</span></div>
+<div class="cr-workflow-step cr-workflow-current"><span class="cr-workflow-number">04</span><span class="cr-workflow-task">Revisit and document</span><span class="cr-actor cr-actor-human">Human</span></div>
+<div class="cr-workflow-step cr-workflow-proposed "><span class="cr-workflow-number">04</span><span class="cr-workflow-task">Authorised visit if needed; document outcome</span><span class="cr-actor cr-actor-human">Human</span></div>
 </div>
-<div aria-label="Capability journey stages" class="cap-tabs" role="tablist">
-<button aria-controls="cap-work" aria-selected="true" class="cap-tab active" data-cap-stage="work" id="tab-work" role="tab" title="Interactive stage – select to inspect the capability journey" type="button"><span>01</span><strong>Redesign the work</strong><small>Before → after</small></button>
-<button aria-controls="cap-skills" aria-selected="false" class="cap-tab" data-cap-stage="skills" id="tab-skills" role="tab" title="Interactive stage – select to inspect the capability journey" type="button"><span>02</span><strong>Reveal capability</strong><small>Task bands + evidence</small></button>
-<button aria-controls="cap-transition" aria-selected="false" class="cap-tab" data-cap-stage="transition" id="tab-transition" role="tab" title="Interactive stage – select to inspect the capability journey" type="button"><span>03</span><strong>Test the pathway</strong><small>Requirements + next action</small></button>
-</div>
-<div aria-labelledby="tab-work" class="cap-stage active" data-cap-panel="work" id="cap-work" role="tabpanel">
-<div class="cap-stage-intro"><div><span class="marker">Work-first, not title-first</span><h2>Automation changes tasks—not simply job labels.</h2></div><span class="data-tag low">Proposed process · SME validation required</span></div>
-<div class="cap-process-grid">
-<div class="cap-process before">
-<div class="cap-process-title"><span class="cap-process-num">CURRENT WORK</span><strong>Manual meter workflow</strong></div>
-<ol class="cap-taskflow"><li>Visit and read meter</li><li>Record reading in local system</li><li>Supervisor flags exception</li><li>Technician revisits to verify</li><li>Resolve and document case</li></ol>
-<p class="cap-caption">Illustrative process; regional tasks and control points need Operations SME review.</p>
-</div>
-<div class="cap-process after">
-<div class="cap-process-title"><span class="cap-process-num">REDESIGNED WORK</span><strong>Exception-led smart-meter workflow</strong></div>
-<ol class="cap-taskflow"><li>Smart meter sends reading or alert</li><li>Rules/AI flag an anomaly with provenance</li><li>Human triages routine and complex exceptions</li><li>Authorized field visit only when necessary</li><li>Resolve, document, and review recurring patterns</li></ol>
-<p class="cap-caption">Proposed operating design, not a validated Client implementation or forecast of new jobs.</p>
-</div>
-</div>
-<div class="cap-changes"><span>Human work shifts toward</span><strong>anomaly investigation</strong><strong>digital data quality</strong><strong>safe field diagnostics</strong><strong>exception resolution</strong></div>
-<div class="cap-bottom"><span>Next: identify which tasks FM-027 can demonstrate independently of their formal title.</span><button class="small-button primary" data-cap-stage="skills" type="button">Inspect evidence portfolio →</button></div>
-</div>
-<div aria-labelledby="tab-skills" class="cap-stage" data-cap-panel="skills" hidden="" id="cap-skills" role="tabpanel">
-<div class="cap-stage-intro"><div><span class="marker">Identity preserved · capability overlay</span><h2>A title is not proof of proficiency.</h2></div><span class="data-tag">Source-to-role mapping · illustrative</span></div>
-<div class="cap-lineage">
-<div><small>Existing SAP title</small><strong>Engineer Madya · Region 1</strong><span>Grade, contract and authority retained</span></div>
-<div aria-hidden="true" class="cap-lineage-arrow">→</div>
-<div><small>Provisional canonical role</small><strong>Field Metering — Exception Handler</strong><span>Actual task + SME review required</span></div>
-<div aria-hidden="true" class="cap-lineage-arrow">→</div>
-<div><small>Domain + portfolio</small><strong>Metering Operations</strong><span>Observable capabilities, separate from grade</span></div>
-</div>
-<div class="cap-inspector-grid">
-<div class="panel cap-selector-panel">
-<div class="marker">Synthetic capability portfolio</div><h2>Select a task to inspect</h2>
-<p class="subtle">Each status belongs to a particular task—not to the employee as a whole.</p>
-<div aria-label="Select task capability" class="cap-skill-list" role="group">
-<button aria-pressed="true" class="cap-skill selected" data-cap-task="anomaly" type="button"><span><strong>Meter anomaly investigation</strong><small>Independent complex-case work sample</small></span><span class="data-tag demo">B3 · synthetic</span></button>
-<button aria-pressed="false" class="cap-skill" data-cap-task="exception" type="button"><span><strong>Exception resolution</strong><small>Independent observation</small></span><span class="data-tag demo">B2 · synthetic</span></button>
-<button aria-pressed="false" class="cap-skill" data-cap-task="digital" type="button"><span><strong>Digital validation workflow</strong><small>System-specific practice not yet assessed</small></span><span class="data-tag low">Unassessed</span></button>
-<button aria-pressed="false" class="cap-skill" data-cap-task="safety" type="button"><span><strong>Safety &amp; operational authority</strong><small>Authorization check separate from proficiency</small></span><span class="data-tag low">Review needed</span></button>
-</div>
-</div>
-<div aria-live="polite" class="panel cap-evidence-panel">
-<div class="marker">Task-level evidence inspector</div><h2 id="capTaskTitle">Meter anomaly investigation</h2>
-<p class="subtle" id="capTaskSummary">A task-specific rubric makes complex exception-handling experience visible.</p>
-<div class="cap-evidence-meta"><span class="data-tag demo" id="capTaskBand">Demonstrated B3 · synthetic</span><span class="data-tag" id="capTaskConfidence">High evidence confidence · synthetic</span></div>
-<div id="capRubricSection"><div class="cap-rubric-head">Select a task band to see the observable test</div><div aria-label="Meter anomaly investigation proficiency bands" class="cap-band-tabs" role="group"><button data-cap-band="B1" type="button">B1</button><button data-cap-band="B2" type="button">B2</button><button class="selected" data-cap-band="B3" type="button">B3</button><button data-cap-band="B4" type="button">B4</button></div><div class="cap-rubric-detail"><strong id="capBandTitle">B3 · Complex investigation</strong><p id="capBandTest">Diagnose contradictory readings, compare telemetry and field context, explain the root-cause hypothesis and safe next step.</p><div class="cap-assessment" id="capBandAssessment">Synthetic work-sample evidence supports B3 for this task; B4 has not been assessed.</div></div></div><div class="lab-reasoning"><div class="lab-reasoning-head">Why B3, not B2? <span class="lab-microtag">Synthetic work-sample interpretation</span></div><p><strong>B2</strong> closes routine cases within an established SOP. <strong>B3</strong> requires independent diagnosis of contradictory evidence, a defensible escalation choice, and an auditable explanation. The band belongs to <em>this task</em>, not to the employee’s grade.</p><div class="lab-review-rail"><div><span>01</span><strong>Independent review</strong><small>Second assessor for consequential use</small></div><div><span>02</span><strong>Contest &amp; correction</strong><small>Employee can challenge incomplete evidence</small></div><div><span>03</span><strong>Sampling audit</strong><small>Track contested cases and correction rate</small></div></div></div>
-<div class="cap-evidence-detail" id="capEvidenceDetail"><strong>Evidence trail</strong><p id="capEvidenceText">Blind complex-case work sample + structured observation, reviewed by an independent assessor with second check for consequential use (synthetic example).</p><p class="cap-caption" id="capEvidenceAction">B3 does not grant safety authority, indicate general employee rank, or guarantee destination readiness.</p></div>
-</div>
-</div>
-<div class="cap-bottom"><span>Next: compare this evidence against an assumed future-work requirement.</span><button class="small-button primary" data-cap-stage="transition" type="button">Compare destination roles →</button></div>
-</div>
-<div aria-labelledby="tab-transition" class="cap-stage" data-cap-panel="transition" hidden="" id="cap-transition" role="tabpanel">
-<div class="cap-stage-intro"><div><span class="marker">Demand + capability + human review</span><h2>A pathway is not a placement.</h2></div><span class="data-tag low">No receiving role verified in demo</span></div>
-<div class="cap-destination-context">Three nonvendor roles from the Demand Register (300 + 220 + 140 = 660 assumed WE). Requirements are illustrative and still need SME calibration. Optional 240 WE contractor substitution must be validated against specific contracted tasks; it is not a universal placement role.</div><div aria-label="Choose hypothetical destination role" class="cap-role-picker" role="group">
-<button aria-pressed="true" class="selected" data-destination="data" type="button"><strong>Meter data verification</strong><small>300 WE · Claimed</small></button>
-<button aria-pressed="false" data-destination="exception" type="button"><strong>Smart-meter exception resolution</strong><small>220 WE · Claimed</small></button>
-<button aria-pressed="false" data-destination="assurance" type="button"><strong>Digital work-order assurance</strong><small>140 WE · Claimed</small></button>
-</div>
-<div class="cap-compare-grid">
-<div class="panel">
-<div class="marker">Requirement-to-evidence comparison</div><h2 id="capDestTitle">Meter data verification</h2>
-<p class="subtle" id="capDestDescription">Illustrative requirements and workload pending Operations SME review; no role is Backed.</p>
-<div class="table-scroll"><table class="cap-match-table"><thead><tr><th>Required task</th><th>Target band</th><th>FM-027 evidence</th></tr></thead><tbody id="capRequirementRows"></tbody></table></div>
-<div class="cap-separation"><strong>Demand gate</strong><span id="capDemandStatus">CLAIMED — not backed by independent workload and authorization</span></div>
-</div>
-<div class="panel cap-decision-panel">
-<div class="marker">Human-reviewed pathway</div><h2 id="capPathTitle">Development pathway only</h2><p id="capPathSummary">Some adjacent skills are demonstrable, but digital work and receiving demand need validation.</p>
-<div class="cap-gates"><div><b>01</b><span>Task evidence</span><strong id="capGateSkill">Partial · targeted work sample needed</strong></div><div><b>02</b><span>Receiving demand</span><strong>Unverified · Operations + Finance review</strong></div><div><b>03</b><span>Employment safeguards</span><strong>Consent, safety authority and human review</strong></div></div>
-<div class="cap-next"><strong>Recommended next action</strong><p id="capNextAction">Offer a voluntary digital-validation work sample, then revisit the pathway only if receiving demand is independently backed.</p></div><p class="lab-safeguard"><strong>Assessment ≠ placement.</strong> Independent capability evidence, approved receiving workload, funded capacity, location, consent, and safety permission are separate conditions.</p>
-<button class="small-button" data-open="demand" type="button">Review demand evidence →</button>
-</div>
-</div>
-<div class="cap-bottom"><span>Even strong capability evidence cannot create funded receiving work; use Scenario Lab to test the scale problem.</span><button class="small-button" data-open="scenario" type="button">View workforce scale →</button></div>
-</div>
-<div class="cap-scale"><div><span class="marker">Enterprise repeatability</span><strong>1,800+ titles → reviewed archetypes → task portfolios → evidence → authorised decisions</strong><p>Start with controlled title inventory and SME-approved task mappings. Preserve source records; reconcile identities through approved crosswalks, audit regional exceptions, and allow workers to inspect and correct evidence. Scale only after proof in selected job families—not by auto-scoring all 52,000 employees.</p></div><div style="max-width:375px"><span class="marker">Illustrative title crosswalk</span><p style="font-size:13px;line-height:1.55;margin-top:5px"><strong>Engineer Madya (Region 1)</strong> and <strong>Senior Technician II (Region 2)</strong> may share an <strong>Exception Handler</strong> archetype <em>only after task + safety authority review</em>. A third source title, Meter Reader (synthetic), remains under a different provisional archetype. Grade and source title are preserved; ~200 archetypes is a planning assumption, not a discovered count.</p></div><span class="data-tag">Not a payroll or dismissal system</span></div>
+<div class="cr-workflow-bridge"><strong>Human work shifts toward</strong><span>Meter anomaly investigation · Digital validation workflow · Exception resolution</span></div>
+<p class="cr-workflow-note">Illustrative workflow requiring Operations and safety review; not evidence of newly funded jobs.</p>
+</section>
+    <section class="cr-panel cr-scale" aria-labelledby="crScaleHeading"><div class="cr-section-heading"><div><span class="cr-overline">HOW THIS CAN SCALE</span><h2 id="crScaleHeading">A governed method, not 52,000 automatic scores.</h2></div></div>
+      <div class="cr-scale-steps"><div><small>01</small><strong>1,800+ source titles</strong><span>Retain each title and grade</span></div><div><small>02</small><strong>Reviewed standard roles</strong><span>~200 is an effort assumption</span></div><div><small>03</small><strong>Observed task evidence</strong><span>Assess against task criteria</span></div><div><small>04</small><strong>Verified receiving work</strong><span>Workload, funding, timing</span></div><div><small>05</small><strong>Human review</strong><span>Consent, authority, corrections</span></div></div>
+      <p class="cr-small-note">Roles are grouped by observed tasks and local review—not by matching title strings. The 24 examples are deliberately varied, not a statistical model of 6,000 Field Metering employees.</p>
+    </section>
+  </div>
+
+  <div id="crCase" class="cr-view" hidden>
+    <nav class="cr-breadcrumb" aria-label="Capability case navigation"><button type="button" class="cr-text-button" id="crBack">← Back to overview</button><span aria-hidden="true">/</span><span id="crBreadcrumbId">FM-027</span></nav>
+    <div class="cr-case-head"><div><span class="eyebrow">CASE REVIEW / FICTIONAL EMPLOYEE</span><h1 id="crCaseHeading" tabindex="-1">FM-027</h1><p id="crCaseSource" class="cr-subtitle"></p></div><div class="cr-case-head-actions"><button type="button" class="cr-button cr-button-outline" id="crSwitchCases">Compare four cases</button><button type="button" class="cr-text-button" id="crBrowseFromCase">Browse 24 records →</button></div></div>
+    <div class="cr-case-context"><strong id="crCurrentProfile"></strong><span id="crProfileFlags"></span></div>
+    <section class="cr-panel" aria-labelledby="crRoleHeading"><div class="cr-section-heading"><div><span class="cr-overline">01 / CHOOSE PROPOSED DESTINATION WORK</span><h2 id="crRoleHeading">Which work are we checking against?</h2><p>Select proposed work, then see the updated case outcome immediately below. No role is a verified vacancy.</p></div></div><div id="crRoleChoices" class="cr-role-options" role="group" aria-label="Proposed destination work"></div></section>
+    <section class="cr-decision" aria-label="Case assessment outcome"><div class="cr-decision-top"><div><span class="cr-overline">02 / CASE OUTCOME</span><h2 id="crDecisionTitle"></h2><p id="crDecisionSummary"></p></div><span id="crPriorityBadge" class="cr-priority"></span></div>
+      <div class="cr-gates" aria-label="Three independent decision checks"><div><span>1 · Task capability</span><strong id="crTaskGate"></strong><small id="crTaskGateNote"></small></div><div><span>2 · Real receiving work</span><strong>Not verified</strong><small id="crDemandGateNote"></small></div><div><span>3 · Consent & permission</span><strong id="crPermissionGate"></strong><small id="crPermissionGateNote"></small></div></div>
+      <div class="cr-next-action"><strong>Recommended next step (for human review)</strong><p id="crNextAction"></p></div>
+    </section>
+    <section aria-labelledby="crRequirementsHeading" class="cr-panel"><div class="cr-section-heading"><div><span class="cr-overline">03 / UNDERSTAND THE EVIDENCE</span><h2 id="crRequirementsHeading">What was demonstrated—and what does the proposed work require?</h2><p>All seven capability and authority records are visible. Missing work samples are marked Not assessed, not treated as inability. Existing sample evidence is shown directly under each task.</p></div></div><div class="cr-evidence-sections" id="crRequirements"></div></section>
+    <section class="cr-panel cr-mapping" aria-labelledby="crMappingHeading"><div class="cr-section-heading"><div><span class="cr-overline">04 / ROLE MAPPING</span><h2 id="crMappingHeading">How did the source job title become a provisional standard role?</h2></div></div><div class="cr-map-chain"><div><small>Original HR title · retained</small><strong id="crMapSource"></strong></div><span aria-hidden="true">→</span><div><small>Observed work · provisional</small><strong id="crMapRole"></strong><p id="crMapBasis"></p></div><span aria-hidden="true">→</span><div><small>Portfolio</small><strong>Task-level evidence, not a new employment grade</strong></div></div><p class="cr-mapping-note">Identity matching, task similarity, local exceptions and permissions require authorised steward and Operations review. No payroll integration.</p></section>
+    <div class="cr-case-footer"><button type="button" class="cr-button cr-button-outline" id="crBackBottom">← Return to comparison</button><button type="button" class="cr-button cr-button-primary" id="crInspectDemand" data-open="demand">Inspect receiving-work evidence <span aria-hidden="true">→</span></button></div>
+  </div>
+
+  <div id="crDirectory" class="cr-view" hidden>
+    <nav class="cr-breadcrumb" aria-label="Directory navigation"><button type="button" class="cr-text-button" id="crDirectoryBack">← Back to overview</button></nav><span class="eyebrow">FICTIONAL EMPLOYEE DIRECTORY</span><h1 id="crDirectoryHeading" tabindex="-1">24 examples. Choose a case to review.</h1><p class="cr-intro">This worklist demonstrates what a future HR Manager could search. It is not Client workforce data or a ranking.</p>
+    <div class="cr-panel"><div class="cr-directory-controls"><label>Search fictional employees<input id="crSearch" type="search" placeholder="ID, source job title or region" autocomplete="off"/></label><label>Example situation<select id="crFilter"><option value="all">All situations</option><option value="complex">Partial task evidence</option><option value="routine">Routine task evidence</option><option value="telemetry">Strong task evidence</option><option value="novice">Development gap</option><option value="contested">Contested evidence</option><option value="safetyHold">Safety / authority hold</option><option value="noConsent">Not opted in</option><option value="qaStrong">Quality assurance evidence</option></select></label><button type="button" id="crClearFilters" class="cr-button cr-button-outline">Clear filters</button></div><div id="crDirectoryCount" role="status" aria-live="polite" class="cr-directory-count"></div><div class="cr-directory-list" id="crDirectoryList" aria-label="Fictional employee records"></div></div>
+  </div>
 </section><section class="page" id="board"><span class="eyebrow">05 / Board resolution</span><h1>Approve evidence-building. Do not approve an unproven full-scale absorption claim.</h1><p class="lede">A decision record that stays valid even in the zero-contractor and non-gateable stress scenario.</p><section class="board-hero" aria-label="Decision requested">
  <div class="board-hero-main"><span class="board-hero-label">RECOMMENDED BOARD RESOLUTION</span>
  <h2>Authorise the bounded 90-day proof. Withhold scale approval.</h2>
@@ -515,7 +1092,7 @@ button:hover{filter:brightness(.985)}.small-button.primary:hover{background:#0a5
  <div class="board-kpi"><span>UNRESOLVED AT M36</span><strong id="boardGap">2,535</strong><small>WE, not people · scenario-dependent</small></div>
  <div class="board-kpi"><span>SELECTED VENDOR-ONLY CASH ROI</span><strong id="boardCash">−2.5%</strong><small>Chosen capture, not expected Client ROI</small></div>
  <div class="board-kpi"><span>CASH BREAK-EVEN HURDLE</span><strong>25.64%</strong><small>Hypothetical vendor pool · equals 1,000 FTE-months at Rp6m</small></div>
- </div><p class="board-upside">Full capture would yield <strong>+290% synthetic vendor-only upside</strong>; zero contractor work yields −100% on this single cash category. Neither is a validated investment case.</p><div class="lab-finance-panel"><div class="lab-section-heading"><div><span class="eyebrow">FINANCE / CONDITIONAL SENSITIVITY</span><h2>At what vendor capture would cash break even?</h2></div><span class="lab-microtag">Not expected ROI</span></div><div class="lab-finance-inner"><div class="lab-finance-controls"><span class="lab-finance-label">Assumed avoidable share of 3,900 vendor FTE-months</span><div aria-label="Illustrative vendor cash capture" class="lab-capture-options" role="group"><button aria-pressed="false" data-capture="0">0%</button><button aria-pressed="true" class="active" data-capture="25">25%</button><button aria-pressed="false" data-capture="50">50%</button><button aria-pressed="false" data-capture="100">100%</button></div><div class="lab-capture-bar"><span id="labCaptureBar" style="width:25%"></span><i style="left:25.641%" title="Conditional break-even: 25.64%"></i></div><div class="lab-capture-labels"><span>0% avoided</span><span>25.64% cash hurdle</span><span>100% avoided</span></div></div><div class="lab-capture-result"><small>Vendor-only cash ROI · chosen sensitivity</small><strong id="labCaptureROI">−2.5%</strong><span id="labCaptureCash">Rp5.85B potential gross avoided cash</span></div></div><p class="lab-finance-foot">Rp6.0B illustrative programme cost ÷ (3,900 candidate FTE-months × assumed Rp6m/unit) = <strong>25.64% conditional break-even.</strong> Neither contract volume nor avoidability has been validated. If the Scenario Lab excludes contractor work, this cash benefit category is zero regardless of the sensitivity above.</p></div><details class="board-detail"><summary>Implementation choices &amp; unresolved workforce <span>Explore decision guardrails</span></summary><div class="grid2 gap-5"><div class="panel rounded-2xl"><h2>Conditional Board ask</h2><div class="stack"><div class="step rounded-xl"><div class="step-number">AUTHORISE</div><h3>90-day voluntary evidence programme</h3><p>SMEs, purpose-bound non-payroll access, independent assessors, union and privacy oversight.</p></div><div class="step rounded-xl"><div class="step-number">MANDATE</div><h3>Cross-functional demand validation</h3><p>Operations work drivers, Finance avoidable spend, Technology rollout authority, and receiving work redesign.</p></div><div class="step rounded-xl"><div class="step-number">GATE</div><h3>Continue / Adjust / Hold</h3><p>Evidence, Operational, Decision and Trust gates before scale funding. Hold unsafe workstreams, not necessarily all aggregate analysis.</p></div></div></div><div class="panel rounded-2xl"><h2>What happens to people not redeployed?</h2><p class="subtle">Unresolved work-equivalents are not named people or an automatic dismissal queue.</p><div class="stack"><div class="step rounded-xl"><h3>Productive, time-limited work redesign</h3><p>Identified business owner, measurable workload, regular review; no fictitious placements.</p></div><div class="step rounded-xl"><h3>Voluntary mobility and development</h3><p>Cross-region options only with real demand, reasonable feasibility and legal safeguards.</p></div><div class="step rounded-xl"><h3>Attrition and operating capacity</h3><p>Count only unrefilled work requirements; report any remaining funded capacity exposure to the Board.</p></div></div></div></div><div class="panel rounded-2xl"><div class="kicker">LEAST-CONFIDENT DECISION</div><h2>Demand-led redeployment as the primary strategic bet</h2><p>We are least confident in choosing demand-led redeployment as the central intervention because sufficient receiving work has not been proven. Test this decision within <strong>30 days</strong> using operational workload evidence from Operations and avoidable contractor spend from Finance. If the evidence fails, adjust the programme toward controlled interim capacity management, task redesign and Board-funded transition measures—not a promise of full absorption.</p><div class="panel rounded-2xl" style="margin-top:14px"><h2>Investment scope &amp; decision gates</h2><div class="grid2 gap-5"><div class="step"><strong>Cost bridge · Rp million</strong><p><strong>Rp6,000</strong> = Rp3,500 consulting fee <em>(brief)</em> + Rp1,500 implementation + Rp500 support in each of years 2 and 3 <em>(synthetic)</em>. At Rp6m per genuinely avoidable vendor FTE-month, break-even is <strong>1,000 FTE-months</strong>; at the full hypothetical 3,900 volume, the unit hurdle is <strong>Rp1.54m</strong>. The Rp3,787.5m architecture estimate is a separate <em>resource-effort valuation</em>, with overlap not yet reconciled—not an automatic extra bill.</p></div><div class="step"><strong>Decision permission</strong><p><strong>Day 30:</strong> establish union safeguards and request Operations/Finance/Technology data. <strong>Day 60:</strong> proceed to a bounded opt-in pilot only where at least one receiving role is Backed; otherwise no scaled matching claim. <strong>Day 90:</strong> four evidence, operational, decision and trust gates determine continue / adjust / hold. M1–3 spending allocation of Rp1,250m is illustrative: Rp875m pro-rated existing fee and Rp375m unapproved implementation allowance.</p></div></div><p class="subtle" style="margin-top:12px">Unpriced or not reconciled: licences, travel, employee time, full reskilling and mobility. The contractor option is absent from the brief. All costs and role capacities require Client validation.</p></div><div class="alert">Economics boundaries: avoided external recruitment and overtime are currently <strong>Rp0 modelled, pending Finance data</strong>; this does not imply their real value is zero. Gateable NPV is withheld until month-specific gated cash flows are established. Productive non-contractor value is not cash ROI.</div></div></details><details class="board-detail"><summary>Receiving-work demand sensitivity <span>Explore assumptions</span></summary><div class="panel rounded-2xl" style="margin-top:16px"><h2>How much does receiving-work demand matter?</h2><p class="subtle">M36 non-gateable sensitivity, synthetic. Work redesign and cross-regional mobility are not independently quantified here.</p><div class="table-scroll"><table><thead><tr><th>Assumed receiving work</th><th>Unresolved gap at M36</th><th>Interpretation</th></tr></thead><tbody><tr><td>900 WE</td><td>2,535 WE</td><td>Illustrative base, including optional contractor</td></tr><tr><td>2,000 WE</td><td>1,820 WE</td><td>Higher demand is hypothetical, not funded work</td></tr><tr><td>3,500 WE</td><td>845 WE</td><td>Upper stress test only; still not zero</td></tr></tbody></table></div></div></details><details class="board-detail"><summary>Enterprise migration &amp; governance <span>Explore implementation</span></summary><div class="panel rounded-2xl"><h2>Institutionalise without erasing identity</h2><div class="grid2 gap-5"><div class="step rounded-xl"><div class="step-number">52,000 workforce migration</div><p>First create canonical role + task overlays across 1,800+ titles; pilot validated families; expand only after SME audit and governance gates. Existing job title and grade remain contractual records.</p></div><div class="step rounded-xl"><div class="step-number">Identity resolution</div><p>SuccessFactors as starting identity reference, reconcile legacy/Moodle via approved crosswalks, quarantine ambiguous matches, preserve provenance, and let employees correct records. Oracle is excluded.</p></div><div class="step rounded-xl"><div class="step-number">Ministry &amp; union</div><p>Board-authorised liaison and early engagement; verify exact regulatory and collective agreement requirements with counsel. No unilateral assumption that HC controls technology rollout.</p></div><div class="step rounded-xl"><div class="step-number">Repeatability</div><p>Reusable evidence states, role schemas, assessor rubrics, scenario method and audit trail; client-specific task definitions, safety approvals, labour rules and integrations are recalibrated each deployment.</p></div></div></div></details><div class="lab-workers-note"><div class="lab-workers-icon"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 2 8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div><div><strong>Worker safeguards are decision criteria, not a communications add-on.</strong><p>Existing title, grade, contracts and payroll boundaries remain authoritative. Participation is opt-in; blank skills are <em>unassessed</em>; seniority is not erased. No automatic workforce ranking, dismissal, or no-backfill directive. If receiving work fails validation, escalate the structural gap to the Board and union/Ministry governance process.</p></div></div><div class="lab-print-only"><strong>Evidence gates:</strong> D30 regional identity/trust baseline &amp; union briefing; D60 independently Backed receiving-work case or no scale claim; D90 decision pack and structural residual capacity map. <strong>Financial condition:</strong> 25.64% of a hypothetical vendor pool must prove avoidable for Rp6B vendor-only cash break-even. No employer-verified vendor savings or employee placements are claimed.</div><button class="small-button primary" id="printBtn" title="Open browser print dialog. Select Save as PDF for a one-page A4 landscape snapshot.">Print decision snapshot</button></section>
+ </div><p class="board-upside">Full capture would yield <strong>+290% synthetic vendor-only upside</strong>; zero contractor work yields −100% on this single cash category. Neither is a validated investment case.</p><div class="lab-finance-panel"><div class="lab-section-heading"><div><span class="eyebrow">FINANCE / CONDITIONAL SENSITIVITY</span><h2>At what vendor capture would cash break even?</h2></div><span class="lab-microtag">Not expected ROI</span></div><div class="lab-finance-inner"><div class="lab-finance-controls"><span class="lab-finance-label">Assumed avoidable share of 3,900 vendor FTE-months</span><div aria-label="Illustrative vendor cash capture" class="lab-capture-options" role="group"><button aria-pressed="false" data-capture="0">0%</button><button aria-pressed="true" class="active" data-capture="25">25%</button><button aria-pressed="false" data-capture="50">50%</button><button aria-pressed="false" data-capture="100">100%</button></div><div class="lab-capture-bar"><span id="labCaptureBar" style="width:25%"></span><i style="left:25.641%" title="Conditional break-even: 25.64%"></i></div><div class="lab-capture-labels"><span>0% avoided</span><span>25.64% cash hurdle</span><span>100% avoided</span></div></div><div class="lab-capture-result"><small>Vendor-only cash ROI · chosen sensitivity</small><strong id="labCaptureROI">−2.5%</strong><span id="labCaptureCash">Rp5.85B potential gross avoided cash</span></div></div><p class="lab-finance-foot">Rp6.0B illustrative programme cost ÷ (3,900 candidate FTE-months × assumed Rp6m/unit) = <strong>25.64% conditional break-even.</strong> The app opens at 25% capture as a sensitivity illustration; the workbook’s +290% ROI is the separate 100% full-capture upside, NOT the default expected outcome. Neither contract volume nor avoidability is validated. Zero contractor work means zero vendor-cash benefit.</p></div><details class="board-detail board-implementation"><summary>Implementation choices &amp; unresolved workforce</summary><div class="grid2 gap-5"><div class="panel rounded-2xl"><h2>Conditional Board ask</h2><div class="stack"><div class="step rounded-xl"><div class="step-number">AUTHORISE</div><h3>90-day voluntary evidence programme</h3><p>SMEs, purpose-bound non-payroll access, independent assessors, union and privacy oversight.</p></div><div class="step rounded-xl"><div class="step-number">MANDATE</div><h3>Cross-functional demand validation</h3><p>Operations work drivers, Finance avoidable spend, Technology rollout authority, and receiving work redesign.</p></div><div class="step rounded-xl"><div class="step-number">GATE</div><h3>Continue / Adjust / Hold</h3><p>Evidence, Operational, Decision and Trust gates before scale funding. Hold unsafe workstreams, not necessarily all aggregate analysis.</p></div></div></div><div class="panel rounded-2xl"><h2>What happens to people not redeployed?</h2><p class="subtle">Unresolved work-equivalents are not named people or an automatic dismissal queue.</p><div class="stack"><div class="step rounded-xl"><h3>Productive, time-limited work redesign</h3><p>Identified business owner, measurable workload, regular review; no fictitious placements.</p></div><div class="step rounded-xl"><h3>Voluntary mobility and development</h3><p>Cross-region options only with real demand, reasonable feasibility and legal safeguards.</p></div><div class="step rounded-xl"><h3>Attrition and operating capacity</h3><p>Count only unrefilled work requirements; report any remaining funded capacity exposure to the Board.</p></div></div></div></div><div class="panel rounded-2xl"><div class="kicker">LEAST-CONFIDENT DECISION</div><h2>Demand-led redeployment as the primary strategic bet</h2><p>We are least confident in choosing demand-led redeployment as the central intervention because sufficient receiving work has not been proven. Test this decision within <strong>30 days</strong> using operational workload evidence from Operations and avoidable contractor spend from Finance. If the evidence fails, adjust the programme toward controlled interim capacity management, task redesign and Board-funded transition measures—not a promise of full absorption.</p><div class="panel rounded-2xl" style="margin-top:14px"><h2>Investment scope &amp; decision gates</h2><div class="grid2 gap-5"><div class="step"><strong>Cost bridge · Rp million</strong><p><strong>Rp6,000</strong> = Rp3,500 consulting fee <em>(brief)</em> + Rp1,500 implementation + Rp500 support in each of years 2 and 3 <em>(synthetic)</em>. At Rp6m per genuinely avoidable vendor FTE-month, break-even is <strong>1,000 FTE-months</strong>; at the full hypothetical 3,900 volume, the unit hurdle is <strong>Rp1.54m</strong>. The Rp3,787.5m architecture estimate is a separate <em>resource-effort valuation</em>, with overlap not yet reconciled—not an automatic extra bill.</p></div><div class="step"><strong>Decision permission</strong><p><strong>Day 30:</strong> establish union safeguards and request Operations/Finance/Technology data. <strong>Day 60:</strong> proceed to a bounded opt-in pilot only where at least one receiving role is Backed; otherwise no scaled matching claim. <strong>Day 90:</strong> four evidence, operational, decision and trust gates determine continue / adjust / hold. M1–3 spending allocation of Rp1,250m is illustrative: Rp875m pro-rated existing fee and Rp375m unapproved implementation allowance.</p></div></div><p class="subtle" style="margin-top:12px">Unpriced or not reconciled: licences, travel, employee time, full reskilling and mobility. The contractor option is absent from the brief. All costs and role capacities require Client validation.</p></div><div class="alert">Economics boundaries: avoided external recruitment and overtime are currently <strong>Rp0 modelled, pending Finance data</strong>; this does not imply their real value is zero. Gateable NPV is withheld until month-specific gated cash flows are established. Productive non-contractor value is not cash ROI.</div></div></details><details class="board-detail board-support"><summary>Receiving-work demand sensitivity</summary><div class="board-detail-body board-sensitivity"><p class="subtle">M36 non-gateable sensitivity, synthetic. Work redesign and cross-regional mobility are not independently quantified here.</p><div class="table-scroll"><table><thead><tr><th>Assumed receiving work</th><th>Unresolved gap at M36</th><th>Interpretation</th></tr></thead><tbody><tr><td>900 WE</td><td>2,535 WE</td><td>Illustrative base, including optional contractor</td></tr><tr><td>2,000 WE</td><td>1,820 WE</td><td>Higher demand is hypothetical, not funded work</td></tr><tr><td>3,500 WE</td><td>845 WE</td><td>Upper stress test only; still not zero</td></tr></tbody></table></div></div></details><details class="board-detail board-support"><summary>Enterprise migration &amp; governance</summary><div class="board-detail-body board-governance"><div class="grid2 gap-5"><div class="step rounded-xl"><div class="step-number">52,000 workforce migration</div><p>First create canonical role + task overlays across 1,800+ titles; pilot validated families; expand only after SME audit and governance gates. Existing job title and grade remain contractual records.</p></div><div class="step rounded-xl"><div class="step-number">Identity resolution</div><p>SuccessFactors as starting identity reference, reconcile legacy/Moodle via approved crosswalks, quarantine ambiguous matches, preserve provenance, and let employees correct records. Oracle is excluded.</p></div><div class="step rounded-xl"><div class="step-number">Ministry &amp; union</div><p>Board-authorised liaison and early engagement; verify exact regulatory and collective agreement requirements with counsel. No unilateral assumption that HC controls technology rollout.</p></div><div class="step rounded-xl"><div class="step-number">Repeatability</div><p>Reusable evidence states, role schemas, assessor rubrics, scenario method and audit trail; client-specific task definitions, safety approvals, labour rules and integrations are recalibrated each deployment.</p></div></div></div></details><div class="lab-workers-note"><div class="lab-workers-icon"><svg aria-hidden="true" class="ui-icon" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="18"><path d="m12 2 8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"></path><path d="m9 12 2 2 4-4"></path></svg></div><div><strong>Worker safeguards are decision criteria, not a communications add-on.</strong><p>Existing title, grade, contracts and payroll boundaries remain authoritative. Participation is opt-in; blank skills are <em>unassessed</em>; seniority is not erased. No automatic workforce ranking, dismissal, or no-backfill directive. If receiving work fails validation, escalate the structural gap to the Board and union/Ministry governance process.</p></div></div><div class="lab-print-only"><strong>Evidence gates:</strong> D30 regional identity/trust baseline &amp; union briefing; D60 independently Backed receiving-work case or no scale claim; D90 decision pack and structural residual capacity map. <strong>Financial condition:</strong> 25.64% of a hypothetical vendor pool must prove avoidable for Rp6B vendor-only cash break-even. No employer-verified vendor savings or employee placements are claimed.</div><button class="small-button primary" id="printBtn" title="Open browser print dialog. Select Save as PDF for a one-page A4 landscape snapshot.">Print decision snapshot</button></section>
 <footer class="footer">Synthetic demonstration using case facts and illustrative assumptions. Not actual workforce or financial results.</footer></main></div>
 
 <section id="decisionPrintSheet" aria-label="Printable Board decision snapshot" role="document">
@@ -602,111 +1179,246 @@ document.addEventListener('click',e=>{const page=e.target.closest('[data-page],[
 </script><script>
 
 /* Interactive synthetic capability journey — no private records and no network calls. */
+/* Synthetic capability pilot — deliberately not a representation of the Client workforce.
+   Cohort facts are fictional; validation/placement decisions NEVER update scenario assumptions. */
 const CAP_RUBRIC={
- B1:{title:'B1 · Guided recognition',test:'Identify a predefined anomalous reading and document it with a checklist under supervision.',assess:'Sample recognition checklist. B1 does not authorize independent resolution.'},
- B2:{title:'B2 · Routine resolution',test:'Resolve three routine cases within SOP, document the audit trail and escalate out-of-scope cases.',assess:'Structured routine-case work sample and escalation checks.'},
- B3:{title:'B3 · Complex investigation',test:'Diagnose contradictory readings, compare telemetry and field context, explain a root-cause hypothesis and select a safe next step.',assess:'Synthetic independent work sample supports B3; a second assessor checks consequential uses.'},
- B4:{title:'B4 · Improve procedure',test:'Analyse recurring patterns and propose a procedure improvement with measurable false-positive and safety controls.',assess:'Not demonstrated in this example. Requires a distinct improvement proposal and SME approval.'}
+ B1:{title:'B1 · Guided recognition',test:'Recognise a predefined exception, follow a checklist and escalate under supervision.'},
+ B2:{title:'B2 · Independent routine work',test:'Resolve routine task cases within an approved SOP, document the decision and escalate nonroutine cases.'},
+ B3:{title:'B3 · Complex exception judgement',test:'Reconcile contradictory task evidence, diagnose causes and justify safe escalation independently.'},
+ B4:{title:'B4 · Improve and assure procedure',test:'Review recurring failure patterns, demonstrate an improvement, and test quality and safety controls.'}
 };
-const CAP_TASKS={
- anomaly:{title:'Meter anomaly investigation',summary:'Complex exception handling can be demonstrated through observable work samples.',band:'Demonstrated B3 · synthetic',confidence:'High evidence confidence · synthetic',evidence:'Blind complex-case work sample, structured observation, independent assessor and second check for consequential use (fictional illustration).',action:'Proficiency is task-specific. B3 is not a new employment grade or proof of digital-system proficiency.',rubric:true},
- exception:{title:'Exception resolution',summary:'Routine resolution and escalation have separate evidence from anomaly investigation.',band:'Demonstrated B2 · synthetic',confidence:'Moderate evidence confidence · synthetic',evidence:'Independent observation of routine exception handling; exact case coverage and recency require a real pilot check.',action:'A B2 demonstration does not automatically establish B3 anomaly investigation or authority to close safety-critical cases.',rubric:false},
- digital:{title:'Digital validation workflow',summary:'Absence of evidence is not evidence of low proficiency.',band:'Unassessed',confidence:'Evidence confidence: unassessed',evidence:'No assessed sample of the Client-specific digital workflow is available in this fictional profile.',action:'Offer a voluntary system-specific work sample; do not infer proficiency from job title, LMS completion or age.',rubric:false},
- safety:{title:'Safety & operational authority',summary:'Safety permission is a separate gate, not simply a capability score.',band:'Authorization pending',confidence:'Requires independent verification',evidence:'No valid safety authorisation certificate or observed practical check is recorded in this demo.',action:'Check current authorisation and observed practice before any consequential assignment, regardless of other task bands.',rubric:false}
+const CAP_TASK_CATALOG={
+ anomaly:{label:'Meter anomaly investigation',summary:'Diagnose irregular readings using observable task evidence.',case:'Contradictory reading and site-context investigation',why:'B2 handles defined SOP exceptions; B3 diagnoses conflicting signals and justifies an independent escalation.'},
+ exception:{label:'Exception resolution',summary:'Resolve routine metering cases and document the escalation boundary.',case:'Routine exception-resolution practical',why:'B2 demonstrates independent routine resolution; B3 requires complex cross-system exception judgement.'},
+ digital:{label:'Digital validation workflow',summary:'Verify digitally recorded readings and produce an auditable work trail.',case:'Simulated digital reading-validation exercise',why:'LMS enrolment or title is not evidence: an observed, system-specific task is required.'},
+ telemetry:{label:'Telemetry / IoT exception workflow',summary:'Investigate device alerts and interpret telemetry evidence.',case:'Smart-meter alert triage simulation',why:'Routine alert triage differs from complex telemetry-failure diagnosis and safe escalation.'},
+ qa:{label:'Work-order quality assurance',summary:'Review work-order anomalies and independently reconcile issues.',case:'Work-order QA case review',why:'B2 means documented routine quality checks; advanced exception analysis is a separate observation.'},
+ audit:{label:'Digital audit workflow',summary:'Trace digital work-order changes, exception sources and approval flow.',case:'Digital work-order audit simulation',why:'B2 requires a complete, observable audit trail, not simply reported familiarity with software.'},
+ safety:{label:'Safety / operational authority',summary:'Permission is independently governed; task bands cannot grant it.',case:'Authorisation check; never inferred from training history',why:'A B3 skill can coexist with missing, expired or restricted operational authorisation.'}
 };
+const CAP_PATTERNS={
+ complex:{label:'Partial task evidence',note:'Complex-case skill visible, digital work not yet assessed.',bands:{anomaly:3,exception:2},confidence:{anomaly:'High',exception:'Moderate'}},
+ routine:{label:'Routine task evidence',note:'Routine digital work evidenced, telemetry still below proposed band.',bands:{anomaly:2,exception:2,digital:2,telemetry:1},confidence:{anomaly:'High',exception:'High',digital:'High',telemetry:'Moderate'}},
+ telemetry:{label:'Strong task evidence',note:'Metering and telemetry demonstrations are present; receiving demand is still unverified.',bands:{anomaly:3,exception:2,digital:2,telemetry:2},confidence:{anomaly:'High',exception:'High',digital:'High',telemetry:'High'}},
+ novice:{label:'Development gap',note:'Routine proficiency and digital work remain unproven or below proposed criteria.',bands:{anomaly:1,exception:1},confidence:{anomaly:'Moderate',exception:'Moderate'}},
+ contested:{label:'Contested evidence',note:'A task-level work sample is disputed; consequential review pauses.',bands:{anomaly:3,exception:2,digital:2,telemetry:2},confidence:{anomaly:'High',exception:'High',digital:'High',telemetry:'High'},contested:['anomaly']},
+ safetyHold:{label:'Authority hold',note:'Task evidence cannot override missing or expired operational permission.',bands:{anomaly:2,exception:2,digital:2,qa:2,audit:2},confidence:{anomaly:'High',exception:'High',digital:'High',qa:'High',audit:'High'}},
+ noConsent:{label:'Not opted in',note:'Do not progress personal matching or use unconsented assessments.',bands:{},confidence:{}},
+ qaStrong:{label:'QA capability evidence',note:'Work-order QA and digital audit tasks demonstrated; no backed vacancy exists.',bands:{anomaly:2,exception:2,digital:2,qa:2,audit:2},confidence:{anomaly:'Moderate',exception:'High',digital:'High',qa:'High',audit:'High'}}
+};
+// Provisional archetypes come from fictional observed work, NOT from matching title strings.
+const CAP_WORK_BUNDLES={
+ exception:{archetype:'Field Exception Handler (provisional)',basis:'Observed work: investigate exceptions, verify anomalous field readings and escalate complex cases'},
+ collection:{archetype:'Meter Collection & Validation (provisional)',basis:'Observed work: manual reading, routine recording, accuracy checks and escalation'},
+ assurance:{archetype:'Work-order Inspection & Assurance (provisional)',basis:'Observed work: inspection, work-order reconciliation, documentation and control checks'}
+};
+// All source titles, observed work, regions, IDs, consents and evidence values below are fictional.
+const CAP_COHORT_SEEDS=[
+ ['FM-027','Region 1','Engineer Madya','complex','opted-in','pending','exception'],
+ ['FM-004','Region 2','Senior Technician II','routine','opted-in','current','exception'],
+ ['FM-011','Region 3','Metering Field Officer','telemetry','opted-in','current','exception'],
+ ['FM-019','Region 4','Meter Reader','novice','opted-in','pending','collection'],
+ ['FM-021','Region 5','Meter Inspection Officer','contested','opted-in','current','exception'],
+ ['FM-033','Region 6','Meter Technician','safetyHold','opted-in','expired','exception'],
+ ['FM-041','Region 1','Meter Reader','noConsent','not-opted-in','current','collection'],
+ ['FM-052','Region 2','Operations Inspector','qaStrong','opted-in','current','assurance'],
+ ['FM-063','Region 3','Senior Technician II','complex','opted-in','current','exception'],
+ ['FM-067','Region 4','Meter Reader','routine','opted-in','pending','collection'],
+ ['FM-071','Region 5','Meter Technician','telemetry','opted-in','current','exception'],
+ ['FM-077','Region 6','Field Operations Officer','novice','opted-in','expired','collection'],
+ ['FM-081','Region 1','Engineer Madya','contested','opted-in','pending','assurance'],
+ ['FM-086','Region 2','Senior Technician II','safetyHold','opted-in','expired','exception'],
+ ['FM-090','Region 3','Meter Reader','noConsent','not-opted-in','pending','collection'],
+ ['FM-094','Region 4','Operations Inspector','qaStrong','opted-in','current','assurance'],
+ ['FM-101','Region 5','Meter Technician','complex','opted-in','current','exception'],
+ ['FM-108','Region 6','Field Operations Officer','routine','opted-in','current','collection'],
+ ['FM-112','Region 1','Meter Inspection Officer','telemetry','opted-in','pending','exception'],
+ ['FM-119','Region 2','Meter Reader','novice','opted-in','pending','collection'],
+ ['FM-123','Region 3','Engineer Madya','contested','opted-in','current','assurance'],
+ ['FM-131','Region 4','Meter Technician','safetyHold','opted-in','expired','exception'],
+ ['FM-139','Region 5','Meter Reader','noConsent','not-opted-in','pending','collection'],
+ ['FM-145','Region 6','Operations Inspector','qaStrong','opted-in','current','assurance']
+];
+const CAP_COHORT=CAP_COHORT_SEEDS.map(([id,region,title,pattern,consent,safety,workBundle],i)=>({
+ id,region,title,pattern,consent,safety,workBundle,
+ archetype:CAP_WORK_BUNDLES[workBundle].archetype,
+ taskBasis:CAP_WORK_BUNDLES[workBundle].basis,
+ sampleRef:'SIM-WP-'+String(i+1).padStart(3,'0'),
+ sampleWindow:['Jul','Aug','Sep'][i%3]+' 2026 (fabricated)',
+ sampleCases:3+(i%5),
+ assessorRef:'SIM-ASR-'+String(i%6+1).padStart(2,'0'),
+ evidence:CAP_PATTERNS[pattern]
+}));
 const CAP_ROLES={
- data:{
-  title:'Meter data verification · 300 assumed WE',
-  description:'Nonvendor Demand Register role. Task bands are illustrative, not Client-calibrated; workload and funding remain Claimed.',
-  status:'CLAIMED — 300 WE is hypothetical; no independent workload or authorised capacity',
-  req:[
-   ['Meter anomaly investigation','≥B2','B3 shown · demo','met'],
-   ['Digital validation workflow','≥B2','Unassessed','pending'],
-   ['Safety / operational authority','Current check','Not verified','pending']
-  ],
-  summary:'Synthetic anomaly evidence exceeds the proposed task band, but system-specific digital evidence and receiving-work authorisation are absent.',
-  next:'Offer an opt-in digital verification task sample; Operations must substantiate sampled cases and an independent ticket/QA signal, with Finance authorising capacity.',
-  gate:'Partial · digital evidence and Backed work missing'
- },
- exception:{
-  title:'Smart-meter exception resolution · 220 assumed WE',
-  description:'Nonvendor Demand Register role. Proposed B3 complex anomaly judgement and B2 telemetry/exception workflow require SME calibration.',
-  status:'CLAIMED — smart-meter alert volumes, shift need and authorised capacity unverified',
-  req:[
-   ['Complex anomaly investigation','B3','B3 shown · demo','met'],
-   ['Routine exception resolution','B2','B2 shown · demo','met'],
-   ['Telemetry / IoT exception workflow','B2','Unassessed','pending'],
-   ['Safety authorisation','Current check','Not verified','pending']
-  ],
-  summary:'Investigation and routine resolution appear transferable, but IoT telemetry workflow, safety authority, and demand evidence have not been demonstrated.',
-  next:'Run a voluntary observed smart-meter telemetry exercise; Operations/Technology must confirm human-triaged alert hours, independent escalations and funded shift capacity.',
-  gate:'Partial · telemetry evidence and Backed work missing'
- },
- assurance:{
-  title:'Digital work-order assurance · 140 assumed WE',
-  description:'Nonvendor Demand Register role. Work-order QA B2 and digital audit B2 are illustrative, requiring process-owner and SME confirmation.',
-  status:'CLAIMED — work-order exceptions, task requirements and approved QA hours unverified',
-  req:[
-   ['Work-order QA','B2','Unassessed','pending'],
-   ['Digital audit workflow','B2','Unassessed','pending'],
-   ['Safety / system permission','SME-defined','Not verified','pending']
-  ],
-  summary:'FM-027 has not been assessed on work-order quality assurance or the digital audit workflow; B3 in anomaly investigation cannot substitute for that evidence.',
-  next:'First verify a funded Operations QA backlog; then offer an opt-in work-order task sample and system-access checks before any matchability assessment.',
-  gate:'Insufficient · target tasks unassessed and work unbacked'
- }
+ data:{label:'Meter data verification',size:300,details:'Illustrative workload and task criteria; neither evidence nor funded capacity have been confirmed with the Client.',
+ requirements:[{key:'anomaly',label:'Meter anomaly investigation',min:2},{key:'digital',label:'Digital validation workflow',min:2},{key:'safety',label:'Operational authority',authority:true}],
+ proof:'Operations: sampled verification case-hours + independent ticket/QA evidence. Finance: authorised capacity.'},
+ exception:{label:'Smart-meter exception resolution',size:220,details:'Illustrative smart-meter workload; telemetry thresholds and operating permission require Technology and Operations SME calibration.',
+ requirements:[{key:'anomaly',label:'Complex anomaly investigation',min:3},{key:'exception',label:'Routine exception resolution',min:2},{key:'telemetry',label:'Telemetry / IoT workflow',min:2},{key:'safety',label:'Safety authorisation',authority:true}],
+ proof:'Operations/Technology: actual human-triaged alerts × observed hours + independent escalation records. Finance: approved shifts.'},
+ assurance:{label:'Digital work-order assurance',size:140,details:'Illustrative assurance work; real audit volume, authority and budget remain unverified.',
+ requirements:[{key:'qa',label:'Work-order QA',min:2},{key:'audit',label:'Digital audit workflow',min:2},{key:'safety',label:'Task-specific permission',authority:true}],
+ proof:'Operations: observed work-order exceptions × QA hours + independent dispatch/audit signal. Finance: approved capacity.'}
 };
-let capState={stage:'work',task:'anomaly',band:'B3',destination:'data'};
-function setCapabilityStage(stage){
- if(!['work','skills','transition'].includes(stage))return;
- capState.stage=stage;
- document.querySelectorAll('[data-cap-panel]').forEach(el=>{let active=el.dataset.capPanel===stage;el.classList.toggle('active',active);el.hidden=!active;});
- document.querySelectorAll('.cap-tabs [data-cap-stage]').forEach(el=>{let active=el.dataset.capStage===stage;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));el.tabIndex=active?0:-1;});
- const top=document.querySelector('#people').getBoundingClientRect().top+window.scrollY-16;
- window.scrollTo({top:Math.max(0,top),behavior:'instant'});
+const CAP_EVIDENCE_DETAILS={
+ High:'Fictional practical work sample + independent fictional assessor; targeted second check still required for consequential use.',
+ Moderate:'Fictional supervisor observation only; independent corroboration and recency check remain outstanding.',
+ Low:'Fictional self-report / course signal only; not adequate for consequential capability claims.'
+};
+const capState={view:'overview',from:'overview',participant:'FM-027',destination:'data'};
+const crExampleIds=['FM-027','FM-011','FM-021','FM-033'];
+const capProfile=()=>CAP_COHORT.find(p=>p.id===capState.participant)||CAP_COHORT[0];
+function capTaskEvidence(profile,key){
+ if(key==='safety')return {band:null,confidence:'Not a skill band',authority:profile.safety,contested:false};
+ const band=profile.evidence.bands[key]??null;
+ const confidence=profile.evidence.confidence[key]||(band===null?'Unassessed':'Low');
+ return {band,confidence,contested:(profile.evidence.contested||[]).includes(key)};
 }
-function renderCapabilityTask(){
- const t=CAP_TASKS[capState.task];
- document.querySelectorAll('[data-cap-task]').forEach(el=>{const active=el.dataset.capTask===capState.task;el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));});
- document.querySelector('#capTaskTitle').textContent=t.title;
- document.querySelector('#capTaskSummary').textContent=t.summary;
- document.querySelector('#capTaskBand').textContent=t.band;
- document.querySelector('#capTaskConfidence').textContent=t.confidence;
- document.querySelector('#capEvidenceText').textContent=t.evidence;
- document.querySelector('#capEvidenceAction').textContent=t.action;
- document.querySelector('#capRubricSection').hidden=!t.rubric;
- document.querySelector('#capTaskBand').className='data-tag '+(['anomaly','exception'].includes(capState.task)?'demo':'pending');
- if(t.rubric)renderCapabilityBand();
+function capCheck(profile,req){
+ if(req.authority)return profile.safety==='current'?{kind:'supported',text:'Recorded as current · demo'}:{kind:'hold',text:profile.safety==='expired'?'Expired · safety hold':'Pending · authority hold',problem:'safety authority'};
+ const e=capTaskEvidence(profile,req.key);
+ if(e.contested)return {kind:'hold',text:`B${e.band} disputed · independent review`,problem:'contested '+req.label};
+ if(e.band===null)return {kind:'review',text:'Not assessed',problem:'unassessed '+req.label};
+ if(e.band<req.min)return {kind:'review',text:`Below required band`,problem:'development for '+req.label};
+ if(e.confidence!=='High')return {kind:'review',text:'Independent evidence check required',problem:'corroboration for '+req.label};
+ return {kind:'supported',text:`Task sample demonstrated · fictional`};
 }
-function renderCapabilityBand(){
- const rubric=CAP_RUBRIC[capState.band];
- document.querySelectorAll('[data-cap-band]').forEach(el=>{const active=el.dataset.capBand===capState.band;el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));});
- document.querySelector('#capBandTitle').textContent=rubric.title;
- document.querySelector('#capBandTest').textContent=rubric.test;
- document.querySelector('#capBandAssessment').textContent=rubric.assess;
+function crAssessment(profile,role){
+ const checks=role.requirements.map(req=>({req,...capCheck(profile,req)}));
+ const tasks=checks.filter(x=>!x.req.authority);
+ const contested=checks.some(x=>x.problem?.startsWith('contested'));
+ const insufficient=tasks.filter(x=>x.kind!=='supported');
+ const consentHold=profile.consent!=='opted-in';
+ const authorityHold=profile.safety!=='current';
+ const good=tasks.filter(x=>x.kind==='supported').length;
+ let priority='Review needed',title='',summary='',action='';
+ if(consentHold){priority='No consent';title='Do not start individual matching';summary='This fictional employee has not opted in. No personal capability inference can authorise mobility review.';action='Explain the voluntary process and correction rights. Do not use individual assessments for a placement recommendation.';}
+ else if(contested){priority='Evidence disputed';title='Pause consequential use; resolve the challenge';summary='An essential work sample is contested. A displayed proficiency band cannot be used for a consequential decision until review.';action='Arrange independent reassessment and allow the employee to correct their record. Also validate receiving work separately.';}
+ else if(authorityHold){priority='Safety / authority hold';title=insufficient.length?'Develop evidence; hold safety-sensitive work':'Hold assignment until authority is verified';summary=`${good} of ${tasks.length} task requirements have high-confidence fictional samples, but operational authority is ${profile.safety}.`;action='Do not assign safety-sensitive work. Ask Safety/Operations to check or renew role-specific authority, and address any outstanding task-evidence gaps.';}
+ else if(insufficient.length){priority='Evidence incomplete';title='Targeted capability assessment needed';summary=`${good} of ${tasks.length} task requirements have high-confidence fictional samples. The remaining task requirements need assessment, development or independent confirmation.`;action=`Offer voluntary task assessment for ${insufficient.slice(0,2).map(x=>x.req.label).join(' and ')}. Do not promise a receiving role; validate workload and funding first.`;}
+ else{priority='Work demand unverified';title='Capabilities demonstrated; no placement decision';summary=`All ${tasks.length} task requirements have high-confidence fictional samples and current authority is recorded. Work demand remains unverified.`;action='Ask Operations/Finance to validate demand, funding, location and timing; commission independent task/authority review before any authorised human placement decision.';}
+ const taskLabel=contested?'Disputed':insufficient.length?`${good}/${tasks.length} sampled`:`${good}/${tasks.length} sampled`;
+ const taskNote=contested?'Independent adjudication required':insufficient.length?'Additional evidence or development needed':'High-confidence fictional work samples; still need independent real-world validation';
+ const permLabel=consentHold?'Consent not granted':authorityHold?`Authority ${profile.safety}`:'Opt-in and authority recorded';
+ const permNote=consentHold?'No individual matching':authorityHold?'No safety-sensitive assignment':'Still subject to local requirements and human approval';
+ return {checks,tasks,priority,title,summary,action,good,taskLabel,taskNote,permLabel,permNote};
 }
-function renderCapabilityDestination(){
- const role=CAP_ROLES[capState.destination];
- document.querySelectorAll('[data-destination]').forEach(el=>{const active=el.dataset.destination===capState.destination;el.classList.toggle('selected',active);el.setAttribute('aria-pressed',String(active));});
- document.querySelector('#capDestTitle').textContent=role.title;
- document.querySelector('#capDestDescription').textContent=role.description;
- document.querySelector('#capDemandStatus').textContent=role.status;
- document.querySelector('#capRequirementRows').innerHTML=role.req.map(([task,band,evidence,status])=>`<tr><td>${task}</td><td>${band}</td><td><span class="data-tag ${status==='met'?'demo':'pending'}">${evidence}</span></td></tr>`).join('');
- document.querySelector('#capPathTitle').textContent='Development pathway only';
- document.querySelector('#capPathSummary').textContent=role.summary;
- document.querySelector('#capGateSkill').textContent=role.gate;
- document.querySelector('#capNextAction').textContent=role.next;
+function crEsc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function crScrollTop(){const section=document.getElementById('people');const y=section.getBoundingClientRect().top+window.scrollY-12;window.scrollTo({top:Math.max(0,y),behavior:'instant'});}
+function crShow(view,focus=true){
+ if(!['overview','case','directory'].includes(view))return;
+ capState.view=view;
+ for(const [key,id] of [['overview','crOverview'],['case','crCase'],['directory','crDirectory']])document.getElementById(id).hidden=key!==view;
+ crScrollTop();
+ if(focus){const head=view==='case'?'crCaseHeading':view==='directory'?'crDirectoryHeading':null; if(head)document.getElementById(head).focus({preventScroll:true});}
 }
-document.addEventListener('click',e=>{
- const stage=e.target.closest('[data-cap-stage]');if(stage){setCapabilityStage(stage.dataset.capStage)}
- const task=e.target.closest('[data-cap-task]');if(task){capState.task=task.dataset.capTask;renderCapabilityTask()}
- const band=e.target.closest('[data-cap-band]');if(band){capState.band=band.dataset.capBand;renderCapabilityBand()}
- const destination=e.target.closest('[data-destination]');if(destination){capState.destination=destination.dataset.destination;renderCapabilityDestination()}
+function crSelectCase(id,from){
+ if(!CAP_COHORT.some(x=>x.id===id))return;
+ capState.participant=id;
+ capState.destination='data'; // Every new case starts from the role used in the comparison matrix.
+ capState.from=from==='directory'?'directory':'overview';
+ crRenderCase();crShow('case');
+}
+function crStatusType(kind){return kind==='supported'?'sampled':kind==='hold'?'hold':'review';}
+function crRenderMatrix(){
+ const role=CAP_ROLES.data;
+ const actionFor=a=>{
+  if(a.priority==='No consent')return 'Stop individual matching; seek consent';
+  if(a.priority==='Evidence disputed')return 'Independent reassessment before use';
+  if(a.priority==='Safety / authority hold')return a.good<a.tasks.length?'Assess missing tasks; hold safety work':'Hold safety work; verify authority';
+  if(a.priority==='Evidence incomplete')return 'Assess or develop missing tasks';
+  return 'Validate receiving work with Ops / Finance';
+ };
+ document.getElementById('crMatrix').innerHTML=crExampleIds.map(id=>{
+  const p=CAP_COHORT.find(x=>x.id===id),a=crAssessment(p,role);
+  const perms=p.consent!=='opted-in'?'Not opted in':p.safety==='current'?'Recorded · demo':p.safety==='expired'?'Expired · hold':'Pending · hold';
+  const permissionType=(p.safety==='current'&&p.consent==='opted-in')?'cr-sampled':'cr-danger';
+  return `<div class="cr-mrow" data-cr-row="${crEsc(id)}" role="button" tabindex="0" aria-label="Open case ${crEsc(id)}"><div class="cr-case-identity"><strong>${crEsc(p.id)}</strong><small>${crEsc(p.title)} · ${crEsc(p.region)}</small></div><div><span class="cr-mobile-label">Task evidence</span><span class="cr-status ${a.priority==='Evidence disputed'?'cr-danger':a.good===a.tasks.length?'cr-sampled':'cr-review'}">${crEsc(a.taskLabel)}</span></div><div><span class="cr-mobile-label">Consent & authority</span><span class="cr-status ${permissionType}">${crEsc(perms)}</span></div><div><span class="cr-mobile-label">Next action</span><span class="cr-next-label">${crEsc(actionFor(a))}</span><button type="button" class="cr-button cr-button-outline" data-cr-open="${crEsc(id)}" aria-label="Open ${crEsc(id)} case details">Open case →</button></div></div>`;
+ }).join('');
+}
+function crEvidenceDetail(profile,req){
+ const catalog=CAP_TASK_CATALOG[req.key],e=capTaskEvidence(profile,req.key);
+ if(req.authority){return `<p><strong>Permission record:</strong> ${crEsc(profile.safety)} (fictional). Safety authorisation is a separate check, not a proficiency level. Actual requirements depend on task and region; the application cannot issue or renew an authorisation.</p>`;}
+ if(e.band===null)return ''; // Unassessed status and one explanation above the table avoid repeated generic text.
+ const sample=profile.sampleRef+' · '+profile.sampleWindow+' · '+profile.sampleCases+' fictional cases';
+ const criteria=CAP_RUBRIC['B'+e.band]?.test||'Practical task calibration required';
+ const required=Number.isInteger(req.min)?`<p><strong>Required for this proposed work:</strong> B${req.min}. The levels describe task criteria, not an employee-wide score.</p>`:'';
+ return `<p><strong>Why B${e.band}?</strong> ${crEsc(catalog.why)}</p><p><strong>Observed sample (fabricated):</strong> ${crEsc(catalog.case)} · ${crEsc(sample)}</p><p><strong>Assessment criterion:</strong> ${crEsc(criteria)}</p><p><strong>Evidence confidence:</strong> ${crEsc(e.confidence)}. ${crEsc(CAP_EVIDENCE_DETAILS[e.confidence]||'Independent review pending.')}</p>${e.contested?'<p class="cr-danger-text"><strong>Contested evidence:</strong> pause consequential use pending independent reassessment and employee correction.</p>':''}${required}`;
+}
+function crBandDisplay(profile,req){if(req.authority)return 'Separate permission';const e=capTaskEvidence(profile,req.key);return e.band===null?'Not assessed':`B${e.band}${e.contested?' · disputed':''}`;}
+function crEvidenceRow(profile,req,check,idx,required){
+ const e=capTaskEvidence(profile,req.key);
+ const demonstration=crBandDisplay(profile,req);
+ const requiredBand=required?(req.authority?'Safety check':`B${req.min}`):'Not required';
+ let kind, status;
+ if(required){kind=crStatusType(check.kind);status=check.text;}
+ else if(e.contested){kind='hold';status='Disputed · review required';}
+ else if(e.band===null){kind='review';status='Not assessed';}
+ else if(e.confidence!=='High'){kind='review';status='Corroboration needed';}
+ else {kind='sampled';status='Task sample recorded · fictional';}
+ const note=crEvidenceDetail(profile,required?req:{key:req.key,authority:!!req.authority});
+ return `<tr class="cr-evidence-main"><td data-label="Task"><div class="cr-evidence-task"><small>${String(idx+1).padStart(2,'0')}</small><strong>${crEsc(req.label)}</strong></div></td><td data-label="Demonstrated"><strong>${crEsc(demonstration)}</strong></td><td data-label="Required">${crEsc(requiredBand)}</td><td data-label="Evidence status"><span class="cr-req-status cr-${kind}">${crEsc(status)}</span></td></tr>${note?`<tr class="cr-evidence-detail"><td colspan="4"><div class="cr-evidence-body">${note}</div></td></tr>`:""}`;
+}
+function crRenderCaseEvidence(profile,role,assessment){
+ const requiredKeys=new Set(role.requirements.map(r=>r.key));
+ const others=Object.keys(CAP_TASK_CATALOG).filter(k=>!requiredKeys.has(k)).map(k=>({key:k,label:CAP_TASK_CATALOG[k].label}));
+ const head='<thead><tr><th scope="col">Task</th><th scope="col">Demonstrated</th><th scope="col">Required</th><th scope="col">Evidence status</th></tr></thead>';
+ const table=(rows,label)=>`<div class="cr-evidence-table-wrap"><table class="cr-evidence-table" aria-label="${crEsc(label)}">${head}<tbody>${rows}</tbody></table></div>`;
+ const primary=assessment.checks.map((c,i)=>crEvidenceRow(profile,c.req,c,i,true)).join('');
+ const additional=others.map((req,i)=>crEvidenceRow(profile,req,null,i+assessment.checks.length,false)).join('');
+ document.getElementById('crRequirements').innerHTML=`<div class="cr-evidence-group"><div class="cr-evidence-group-title"><h3>Required for ${crEsc(role.label)}</h3><p>These tasks and permissions determine the capability review for the selected proposed role.</p></div>${table(primary,'Requirements for '+role.label)}</div><div class="cr-evidence-group"><div class="cr-evidence-group-title"><h3>Other recorded capabilities</h3><p>Visible for context, but not requirements of the selected role. These do not increase the receiving-work capacity.</p></div>${table(additional,'Other recorded capabilities')}</div>`;
+}
+function crRenderCase(){
+ const p=capProfile(),role=CAP_ROLES[capState.destination],a=crAssessment(p,role);
+ document.getElementById('crBreadcrumbId').textContent=p.id;
+ document.getElementById('crCaseHeading').textContent=`${p.id} · ${p.title}`;
+ document.getElementById('crCaseSource').textContent=`${p.region} · Source title retained · ${CAP_PATTERNS[p.pattern].label}`;
+ document.getElementById('crCurrentProfile').textContent=`Reviewing ${p.id} against ${role.label}`;
+ document.getElementById('crProfileFlags').textContent=`Consent: ${p.consent==='opted-in'?'opt-in simulated':'not granted'} · Authority: ${p.safety}`;
+ document.getElementById('crRoleChoices').innerHTML=Object.entries(CAP_ROLES).map(([id,r])=>`<button type="button" data-cr-role="${id}" class="cr-role-choice ${id===capState.destination?'selected':''}" aria-pressed="${id===capState.destination}"><strong>${crEsc(r.label)}</strong><small>${r.size} proposed work equivalents · Not verified</small></button>`).join('');
+ document.getElementById('crDecisionTitle').textContent=a.title;
+ document.getElementById('crDecisionSummary').textContent=a.summary;
+ const badge=document.getElementById('crPriorityBadge');badge.textContent=a.priority;badge.className='cr-priority '+(['No consent','Evidence disputed','Safety / authority hold'].includes(a.priority)?'cr-danger':'cr-review');
+ document.getElementById('crTaskGate').textContent=a.taskLabel;document.getElementById('crTaskGateNote').textContent=a.taskNote;
+ document.getElementById('crDemandGateNote').textContent=`${role.size} work-equivalent capacity proposed only; not a vacancy or confirmed workload.`;
+ document.getElementById('crPermissionGate').textContent=a.permLabel;document.getElementById('crPermissionGateNote').textContent=a.permNote;
+ document.getElementById('crNextAction').textContent=a.action;
+ crRenderCaseEvidence(p,role,a);
+ document.getElementById('crMapSource').textContent=p.title+' · '+p.region;
+ document.getElementById('crMapRole').textContent=p.archetype;
+ document.getElementById('crMapBasis').textContent=p.taskBasis+'. Local SME review is still required.';
+ document.getElementById('crBack').textContent=capState.from==='directory'?'← Back to employee directory':'← Back to comparison';
+}
+function crRenderDirectory(){
+ const query=document.getElementById('crSearch').value.trim().toLowerCase(),pattern=document.getElementById('crFilter').value;
+ const rows=CAP_COHORT.filter(p=>(pattern==='all'||p.pattern===pattern)&&[p.id,p.region,p.title,CAP_PATTERNS[p.pattern].label].join(' ').toLowerCase().includes(query));
+ document.getElementById('crDirectoryCount').textContent=`Showing ${rows.length} of ${CAP_COHORT.length} fictional records`;
+ if(!rows.length){document.getElementById('crDirectoryList').innerHTML='<div class="cr-empty"><strong>No matching fictional records</strong><p>Try another search or clear filters. No employee record has been changed.</p><button type="button" class="cr-button cr-button-outline" id="crEmptyClear">Clear filters</button></div>';return;}
+ const body=rows.map(p=>{
+  const consent=p.consent==='opted-in'?'Opted in':'Not granted';
+  const perm=p.safety==='current'?'Current · demo':p.safety==='expired'?'Expired · hold':'Pending · hold';
+  const permClass=p.safety==='current'?'cr-sampled':'cr-hold';
+  return `<tr><td data-label="Employee ID"><strong>${crEsc(p.id)}</strong></td><td data-label="Region">${crEsc(p.region)}</td><td data-label="Source job title">${crEsc(p.title)}</td><td data-label="Example situation">${crEsc(CAP_PATTERNS[p.pattern].label)}</td><td data-label="Consent & authority"><div class="cr-directory-permissions"><span class="cr-status ${p.consent==='opted-in'?'cr-sampled':'cr-danger'}">${crEsc(consent)}</span><span class="cr-status ${permClass}">${crEsc(perm)}</span></div></td><td data-label="Action"><button type="button" class="cr-button cr-button-outline" data-cr-open="${crEsc(p.id)}" aria-label="Open case ${crEsc(p.id)}">Open case →</button></td></tr>`;
+ }).join('');
+ document.getElementById('crDirectoryList').innerHTML=`<div class="cr-directory-table-wrap"><table class="cr-directory-table"><thead><tr><th scope="col">Employee ID</th><th scope="col">Region</th><th scope="col">Source job title</th><th scope="col">Example situation</th><th scope="col">Consent & authority</th><th scope="col">Action</th></tr></thead><tbody>${body}</tbody></table></div>`;
+}
+function crResetFilters(){document.getElementById('crSearch').value='';document.getElementById('crFilter').value='all';crRenderDirectory();}
+function crBack(){crShow(capState.from==='directory'?'directory':'overview');}
+document.addEventListener('click',event=>{
+ const row=event.target.closest('[data-cr-row]');if(row && !event.target.closest('button')){crSelectCase(row.dataset.crRow,'overview');return;}
+ const btn=event.target.closest('button');if(!btn)return;
+ if(btn.matches('[data-cr-open]')){crSelectCase(btn.dataset.crOpen,capState.view==='directory'?'directory':'overview');return;}
+ if(btn.matches('[data-cr-role]')){if(CAP_ROLES[btn.dataset.crRole]){capState.destination=btn.dataset.crRole;crRenderCase();}return;}
+ if(btn.matches('#crOpenDirectory,#crBrowseFromCase')){crRenderDirectory();crShow('directory');return;}
+ if(btn.matches('#crBack,#crBackBottom')){crBack();return;}
+ if(btn.matches('#crSwitchCases,#crDirectoryBack')){crShow('overview');return;}
+ if(btn.matches('#crClearFilters,#crEmptyClear')){crResetFilters();return;}
+ if(btn.matches('[data-page="people"],[data-open="people"]')){crShow('overview',false);return;}
 });
-document.querySelector('.cap-tabs').addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;const stages=['work','skills','transition'];const ix=stages.indexOf(capState.stage);let next=e.key==='Home'?0:e.key==='End'?2:(ix+(e.key==='ArrowRight'?1:2))%3;e.preventDefault();setCapabilityStage(stages[next]);document.querySelector('#tab-'+stages[next]).focus()});
-renderCapabilityTask();renderCapabilityDestination();
-
-
+document.getElementById('crMatrix').addEventListener('keydown',e=>{if((e.key==='Enter'||e.key===' ')&&e.target.matches('[data-cr-row]')){e.preventDefault();crSelectCase(e.target.dataset.crRow,'overview');}});
+document.getElementById('crSearch').addEventListener('input',crRenderDirectory);
+document.getElementById('crFilter').addEventListener('change',crRenderDirectory);
+crRenderMatrix();crRenderDirectory();crRenderCase();crShow('overview',false);
 
 // Additional Board cash sensitivity. Never presented as probability or expected case.
 const LAB_CANDIDATE_VENDOR_MONTHS=3900;
@@ -799,6 +1511,7 @@ function renderDemandInspector(){
  document.querySelector('#demandRoleTitle').textContent=d.title+' · '+d.size+' assumed WE';
  document.querySelector('#demandRoleContext').textContent=d.context;
  document.querySelectorAll('[data-demand-id]').forEach(b=>{const active=b.dataset.demandId===demandSelected;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
+ document.querySelectorAll('[data-demand-row]').forEach(r=>{const active=r.dataset.demandRow===demandSelected;r.classList.toggle('is-selected',active);r.setAttribute('aria-selected',String(active));});
  document.querySelectorAll('[data-proof]').forEach(input=>{
   const key=input.dataset.proof;
   const description=input.closest('.evidence-check')?.querySelector('small');
@@ -808,6 +1521,7 @@ function renderDemandInspector(){
  document.querySelector('#demandEvidenceProgress').style.width=count*25+'%';
  document.querySelector('#demandEvidenceCount').textContent=count+' of 4 simulated conditions represented';
  const full=count===4;
+ document.querySelectorAll('[data-packet-for]').forEach(flag=>{flag.hidden=!(full && flag.dataset.packetFor===demandSelected);});
  document.querySelector('#demandStatus').textContent=full?'REVIEW-READY · DEMO':'NOT BACKED';
  document.querySelector('#demandStatus').classList.toggle('review-ready',full);
  document.querySelector('#demandEvidenceResult').textContent=full?
@@ -818,7 +1532,8 @@ function renderDemandInspector(){
 }
 function resetDemandInspector(){document.querySelectorAll('[data-proof]').forEach(b=>b.checked=false);renderDemandInspector();}
 document.addEventListener('click',e=>{
- const b=e.target.closest('[data-demand-id]');if(b){demandSelected=b.dataset.demandId;resetDemandInspector();document.querySelector('.evidence-inspector').scrollIntoView({behavior:'smooth',block:'nearest'});}
+ const b=e.target.closest('[data-demand-id],[data-demand-row]');if(b){const id=b.dataset.demandId||b.dataset.demandRow;if(DEMAND_ITEMS[id]){demandSelected=id;resetDemandInspector();}}
+ if(e.target.closest('#crInspectDemand')){const selected=typeof capState!=='undefined'?capState.destination:'data';if(DEMAND_ITEMS[selected]){demandSelected=selected;resetDemandInspector();}}
  if(e.target.closest('#demandReset')) resetDemandInspector();
 });
 document.querySelectorAll('[data-proof]').forEach(b=>b.addEventListener('change',renderDemandInspector));
